@@ -1,14 +1,17 @@
 #pragma once
 #include "Player.h"
+#include <vector>
 
 class Battle
 {
 private:
-	Player &P1;
-	Player &P2;
-	int Hit(Player &attacker, Player &defender);
+	Player &P;
+	std::vector<Character*> Enemies;
+	int calcDamage(Character *attacker, Character *defender);
+	void begin();
+	void end(bool result);
 public:
-	Battle(Player &p1, Player &p2);
+	Battle(Player &p1, Character *en1,...);
 	~Battle();
 	void Start();
 };
