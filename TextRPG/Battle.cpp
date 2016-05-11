@@ -3,30 +3,29 @@
 #include <iostream>
 #include <conio.h>
 #include <stdarg.h>
+#include <algorithm>
 
 using namespace std;
 
-Battle::Battle(Player &p1, Character *en1,...)
+Battle::Battle(Player &p)
 	:
-	P(p1)
+	P(p)
 {
-	va_list arg;
-	va_start(arg, en1);
-	Character *en;
-	for (en = en1; en != NULL; en = va_arg(arg, Character*)) {
-		Enemies.push_back(en);
-	}
-	va_end(arg);
+	enemyIndex = 0;
 }
 
 Battle::~Battle()
 {
+	for (int i = 0; i < MyTeam.size(); ++i)
+		delete MyTeam[i];
+	for (int i = 0; i < Enemies.size(); ++i)
+		delete Enemies[i];
 }
 
 inline int Battle::calcDamage(Character *attacker, Character *defender)
 {
-	double random = (rand() % 4) + 8;
-	double damage = static_cast<double>(attacker->Atack/ defender->Defense)*random/10;
+	double random = (rand() % 7) + 7;
+	double damage = static_cast<double>(max(attacker->Atack-defender->Defense,1)*random/10);
 	return damage;
 }
 
@@ -53,30 +52,60 @@ void Battle::end(bool result)
 		cout << endl << "\tPorazka" << endl;
 }
 
+bool Battle::checkDead()
+{
+	if (Enemies[enemyIndex]->IsDead())
+	{
+		cout << Enemies[enemyIndex]->Name << " zginal" << endl;
+		Enemies.erase(Enemies.begin() + enemyIndex);
+		enemyIndex = 0;
+		if (!Enemies.size())
+		{
+			end(true);
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		Enemies[enemyIndex]->HpInfo();
+		return false;
+	}
+}
+
+void Battle::ShowDamage()
+{
+
+}
+
 void Battle::Start()
 {
 	begin();
-	int enemyIndex = 0;
+	char ch;
 	for (;;)
 	{
-		_getch();
-		cout << "Zadales " << Enemies[enemyIndex]->Hit(calcDamage(&P, Enemies[enemyIndex])) << " obrazen. ";
-		if (Enemies[enemyIndex]->IsDead()) 
+		while ((ch = _getch()) != ' ')
 		{
-			if (enemyIndex == Enemies.size() - 1)
+			if ((static_cast<int>(ch) - 48) <= Enemies.size())
 			{
-				end(true);
-				break;
+				enemyIndex = static_cast<int>(ch) - 49;
+				cout << "Celujesz w " << Enemies[enemyIndex]->Name << endl;
 			}
-			else
-			{
-				++enemyIndex;
-			}
-				
 		}
-		cout << Enemies[enemyIndex]->Name << " ma " << Enemies[enemyIndex]->Hp << " HP." << endl;
-		
-		for (int i = enemyIndex; i < Enemies.size(); ++i)
+		cout << "Zadales " << Enemies[enemyIndex]->Hit(calcDamage(&P, Enemies[enemyIndex])) << " obrazen. ";
+		if (checkDead())
+			return;
+		if (!MyTeam.empty())
+		{
+			for (int i = 0; i < MyTeam.size(); ++i)
+			{
+				cout << MyTeam[i]->Name << " zadal " << Enemies[enemyIndex]->Hit(calcDamage(MyTeam[i], Enemies[enemyIndex])) << " obrazen. ";
+				if (checkDead())
+					return;
+			}
+		}
+				
+		for (int i = 0; i < Enemies.size(); ++i)
 		{
 			cout << "\t" << Enemies[i]->Name << " zadal Ci " << P.Hit(calcDamage(Enemies[i], &P)) << " obrazen. ";
 			if (P.IsDead())
@@ -84,7 +113,29 @@ void Battle::Start()
 				end(false);
 				return;
 			}
-			cout << "Zostalo Ci " << P.Hp << " HP." << endl;
+			P.HpInfo();
 		}
 	}
+}
+
+void Battle::AddToFirstTeam(Character *first,...)
+{
+		va_list arg;
+		va_start(arg, first);
+		Character *c;
+		for (c = first; c != NULL; c = va_arg(arg, Character*)) {
+			MyTeam.push_back(c);
+		}
+		va_end(arg);
+}
+
+void Battle::AddToSecondTeam(Enemy *first,...)
+{
+	va_list arg;
+	va_start(arg, first);
+	Enemy *e;
+	for (e = first; e != NULL; e = va_arg(arg, Enemy*)) {
+		Enemies.push_back(e);
+	}
+	va_end(arg);
 }

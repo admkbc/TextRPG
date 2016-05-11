@@ -14,11 +14,15 @@ int main()
 {
 	srand(time(NULL));
 
-	Player Gracz("Gracz", 100, 2, 1, 1);
-	Enemy Wilk("Wilk", 50, 2, 1);
-	Enemy Niedzwiedz("Niedzwiedz", 70, 1, 1);
-	Enemy Lis("Lis", 10, 1, 1);
-	Battle walka(Gracz,&Wilk,&Niedzwiedz, &Lis, NULL);
+	Player Gracz("Gracz", 100, 60, 40, 1);
+	Enemy *Wilk = new Enemy("Wilk", 1, 1, 5);
+	Enemy *Niedzwiedz = new Enemy("Niedzwiedz", 30, 1, 1);
+	Enemy *Kurczak = new Enemy("Kurczak", 5, 1, 1);
+	Enemy *Dragon = new Enemy("Dragon", 200, 50, 50);
+
+	Enemy *Demon = new Enemy("Demon", 100, 60, 60);
+	Battle walka(Gracz);
+	walka.AddToSecondTeam(Dragon, NULL);
 	walka.Start();
 	_getch();
     return 0;

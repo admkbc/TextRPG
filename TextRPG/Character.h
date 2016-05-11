@@ -9,13 +9,15 @@ protected:
 	int Atack;
 	int Defense;
 	bool Dead;
-	int Hit(int value);
-	bool IsDead();
+	
+	
 
 public:
 	Character(std::string name, int hp, int atack, int defense);
 	virtual ~Character() = 0;
-
+	virtual void HpInfo() = 0;
+	bool IsDead();
+	int Hit(int value);
 
 	friend class Battle;
 };

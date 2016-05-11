@@ -9,6 +9,7 @@ private:
 public:
 	Player(std::string name, int hp, int atack, int defense, int happiness);
 	~Player();
+	void HpInfo();
 
 	friend class Battle;
 };

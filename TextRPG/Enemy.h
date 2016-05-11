@@ -6,5 +6,7 @@ class Enemy :
 public:
 	Enemy(std::string name, int hp, int atack, int defense);
 	~Enemy();
+
+	void HpInfo();
 };
 
