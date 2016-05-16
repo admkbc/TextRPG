@@ -35,9 +35,8 @@ void Battle::begin()
 	{
 		cout << "  Przeciwnik: " << Enemies[i]->Name << "(Attack: " << Enemies[i]->Atack << ", Defense: " << Enemies[i]->Defense << ")" << endl;
 	}
-	cout << static_cast<char>(200);
-	for (int i = 0; i < 50; ++i)
-		cout << static_cast<char>(205);
+	for (int i = 0; i < 51; ++i)
+		cout << static_cast<char>(205); 
 	cout << static_cast<char>(188) << endl;
 }
 
@@ -68,14 +67,17 @@ bool Battle::checkDead()
 	}
 	else
 	{
-		Enemies[enemyIndex]->HpInfo();
+		//Enemies[enemyIndex]->HpInfo();
 		return false;
 	}
 }
 
-void Battle::ShowDamage()
+void Battle::damage(Character *ch1, Character *ch2, bool tab)
 {
-
+	if (tab)
+		cout << "\t";
+	cout << ch1->Name << " zadal " << ch2->Hit(calcDamage(ch1, ch2)) << " obrazen " << ch2->Name;
+	cout << "(HP: " << ch2->GetHp() << ")" << endl;
 }
 
 void Battle::Start()
@@ -92,14 +94,14 @@ void Battle::Start()
 				cout << "Celujesz w " << Enemies[enemyIndex]->Name << endl;
 			}
 		}
-		cout << "Zadales " << Enemies[enemyIndex]->Hit(calcDamage(&P, Enemies[enemyIndex])) << " obrazen. ";
+		damage(&P, Enemies[enemyIndex], false);
 		if (checkDead())
 			return;
 		if (!MyTeam.empty())
 		{
 			for (int i = 0; i < MyTeam.size(); ++i)
 			{
-				cout << MyTeam[i]->Name << " zadal " << Enemies[enemyIndex]->Hit(calcDamage(MyTeam[i], Enemies[enemyIndex])) << " obrazen. ";
+				damage(MyTeam[i], Enemies[enemyIndex], false);
 				if (checkDead())
 					return;
 			}
@@ -107,13 +109,12 @@ void Battle::Start()
 				
 		for (int i = 0; i < Enemies.size(); ++i)
 		{
-			cout << "\t" << Enemies[i]->Name << " zadal Ci " << P.Hit(calcDamage(Enemies[i], &P)) << " obrazen. ";
+			damage(Enemies[i],&P, true);
 			if (P.IsDead())
 			{
 				end(false);
 				return;
 			}
-			P.HpInfo();
 		}
 	}
 }

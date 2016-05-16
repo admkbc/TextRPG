@@ -18,6 +18,7 @@ public:
 	virtual void HpInfo() = 0;
 	bool IsDead();
 	int Hit(int value);
+	int GetHp();
 
 	friend class Battle;
 };

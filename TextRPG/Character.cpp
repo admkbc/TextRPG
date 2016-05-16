@@ -21,6 +21,11 @@ int Character::Hit(int value)
 	return value;
 }
 
+int Character::GetHp()
+{
+	return Hp;
+}
+
 bool Character::IsDead()
 {
 	return Dead;

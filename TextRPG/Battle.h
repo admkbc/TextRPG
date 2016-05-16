@@ -14,7 +14,7 @@ private:
 	void begin();
 	void end(bool result);
 	bool checkDead();
-	void ShowDamage();
+	void damage(Character *ch1, Character *ch2, bool tab);
 public:
 	Battle(Player &p);
 	~Battle();

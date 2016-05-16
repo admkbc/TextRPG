@@ -8,7 +8,10 @@
 #include "Battle.h"
 #include <ctime>
 #include "Enemy.h"
+#include "Npc.h"
 
+
+class Npc;
 
 int main()
 {
@@ -20,10 +23,12 @@ int main()
 	Enemy *Kurczak = new Enemy("Kurczak", 5, 1, 1);
 	Enemy *Dragon = new Enemy("Dragon", 200, 50, 50);
 
-	Enemy *Demon = new Enemy("Demon", 100, 60, 60);
+	Enemy *Demon = new Enemy("Demon", 100, 60, 60); 
 	Battle walka(Gracz);
 	walka.AddToSecondTeam(Dragon, NULL);
 	walka.Start();
+	//Npc Bot("Cerasus", 1, 1, 5);
+	//Bot.Talk(Gracz);
 	_getch();
     return 0;
 }
