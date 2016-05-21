@@ -23,13 +23,13 @@ int main()
 	Enemy *Kurczak = new Enemy("Kurczak", 5, 1, 1);
 	Enemy *Dragon = new Enemy("Dragon", 200, 50, 50);
 
-	Enemy *Demon = new Enemy("Demon", 100, 60, 60); 
-	Battle walka(Gracz);
+	Enemy *Demon = new Enemy("Demon", 100, 60, 60);
+	Battle walka(Gracz, false);
 	walka.AddToSecondTeam(Dragon, NULL);
 	walka.Start();
-	//Npc Bot("Cerasus", 1, 1, 5);
+	//Npc Bot("Bot", 1, 1, 5,"TestNPC");
 	//Bot.Talk(Gracz);
-	_getch();
+	//_getch();
     return 0;
 }
 

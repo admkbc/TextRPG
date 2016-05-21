@@ -1,0 +1,13 @@
+0.Witaj! Co slychac?
+-Nic nowego.:1
+-Nic ciekawego.:2
+-Wszystko po staremu.:3
+1.No to fajnie ze nic nowego.
+-Koniec:-1
+-A co u ciebie?:4
+2.No to fajnie ze nic ciekawego.
+-Koniec:-1
+3.No to fajnie ze po staremu.
+-Koniec:-1
+4.Tez nic
+-Koniec:-1

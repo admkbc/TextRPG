@@ -7,9 +7,10 @@
 
 using namespace std;
 
-Battle::Battle(Player &p)
+Battle::Battle(Player &p, bool fenemy)
 	:
-	P(p)
+	P(p),
+	firstenemy(fenemy)
 {
 	enemyIndex = 0;
 }
@@ -80,10 +81,28 @@ void Battle::damage(Character *ch1, Character *ch2, bool tab)
 	cout << "(HP: " << ch2->GetHp() << ")" << endl;
 }
 
+void Battle::enemyHit()
+{
+	for (int i = 0; i < Enemies.size(); ++i)
+	{
+		damage(Enemies[i], &P, true);
+	}
+}
+
 void Battle::Start()
 {
-	begin();
 	char ch;
+	
+	begin();
+	if(firstenemy)
+	{
+		enemyHit();
+		if (P.IsDead())
+		{
+			end(false);
+			return;
+		}
+	}
 	for (;;)
 	{
 		while ((ch = _getch()) != ' ')
@@ -97,6 +116,7 @@ void Battle::Start()
 		damage(&P, Enemies[enemyIndex], false);
 		if (checkDead())
 			return;
+
 		if (!MyTeam.empty())
 		{
 			for (int i = 0; i < MyTeam.size(); ++i)
@@ -105,11 +125,11 @@ void Battle::Start()
 				if (checkDead())
 					return;
 			}
-		}
-				
+		}		
+
 		for (int i = 0; i < Enemies.size(); ++i)
 		{
-			damage(Enemies[i],&P, true);
+			enemyHit();
 			if (P.IsDead())
 			{
 				end(false);
