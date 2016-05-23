@@ -1,15 +1,8 @@
 #pragma once
 #include "Enemy.h"
 #include "Player.h"
-#include <list>
 #include <vector>
-
-struct Sentence
-{
-	std::string question;
-	std::vector<std::string> answers;
-	std::vector<int> nextq;
-};
+#include "Sentence.h"
 
 class Npc :
 	public Enemy
@@ -20,6 +13,7 @@ private:
 	void prints(std::string text);
 	int position;
 	std::vector<Sentence*> sentences;
+	std::vector<Sentence*>::iterator sentencesIt;
 	void menu();
 
 public:

@@ -2,7 +2,8 @@
 #include "Item.h"
 
 
-Item::Item()
+Item::Item(std::string name)
+	:Name(name)
 {
 }
 

@@ -4,6 +4,7 @@
 #include <conio.h>
 #include <stdarg.h>
 #include <algorithm>
+#include <cstdlib>
 
 using namespace std;
 
@@ -17,10 +18,10 @@ Battle::Battle(Player &p, bool fenemy)
 
 Battle::~Battle()
 {
-	for (int i = 0; i < MyTeam.size(); ++i)
-		delete MyTeam[i];
-	for (int i = 0; i < Enemies.size(); ++i)
-		delete Enemies[i];
+	//for (int i = 0; i < MyTeam.size(); ++i)
+	//	delete MyTeam[i];
+	//for (int i = 0; i < Enemies.size(); ++i)
+	//	delete Enemies[i];
 }
 
 inline int Battle::calcDamage(Character *attacker, Character *defender)
@@ -32,6 +33,7 @@ inline int Battle::calcDamage(Character *attacker, Character *defender)
 
 void Battle::begin()
 {
+	system("cls");
 	for (int i = 0; i < Enemies.size(); ++i)
 	{
 		cout << "  Przeciwnik: " << Enemies[i]->Name << "(Attack: " << Enemies[i]->Atack << ", Defense: " << Enemies[i]->Defense << ")" << endl;

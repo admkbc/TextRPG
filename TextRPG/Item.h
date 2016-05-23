@@ -4,9 +4,9 @@
 class Item
 {
 protected:
-	std::string name;
+	std::string Name;
 public:
-	Item();
+	Item(std::string name);
 	~Item();
 };
 

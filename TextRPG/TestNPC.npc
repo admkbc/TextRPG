@@ -3,11 +3,22 @@
 -Nic ciekawego.:2
 -Wszystko po staremu.:3
 1.No to fajnie ze nic nowego.
--Koniec:-1
 -A co u ciebie?:4
+-Koniec:-1
+-Powrot:0
 2.No to fajnie ze nic ciekawego.
 -Koniec:-1
+-Powrot:0
 3.No to fajnie ze po staremu.
 -Koniec:-1
+-Powrot:0
 4.Tez nic
+-Daj mi miecza:5
+-Koniec:-1
+5.No chyba nie.
+-Lepiej zrobisz jak mi go jednak dasz:6
+-Daj mi go bo cie uszkodze:7
+6.Dobra, oto miecz!/giveitem 0 1
+-Koniec:-1
+7.No to cho na solo./battle
 -Koniec:-1

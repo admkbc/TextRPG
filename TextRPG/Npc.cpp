@@ -4,6 +4,9 @@
 #include <iostream>
 #include <fstream>
 #include <conio.h>
+#include <sstream>
+#include "GiveItemAction.h"
+#include "BattleAction.h"
 
 using namespace std;
 
@@ -23,8 +26,9 @@ void Npc::begin()
 	cout << static_cast<char>(188) << endl;
 }
 
-void Npc::prints(std::string text)
+void Npc::prints(string text)
 {
+	gotoxy(10, 5);
 	for (int i = 0; i < text.length(); ++i)
 	{
 		cout << text[i];
@@ -36,13 +40,14 @@ void Npc::prints(std::string text)
 void Npc::menu()
 {
 	int pos = 0;
-	auto it = sentences.begin() + position;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
-	cout << (*it)->answers[0] << endl;
+	gotoxy(12, 7);
+	cout << (*sentencesIt)->GetAnswer(0) << endl;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
-	for (int i = 1; i < (*it)->answers.size(); ++i)
-	{
-		cout << (*it)->answers[i] << endl;
+	for (int i = 1; i < (*sentencesIt)->AnswersSize(); ++i)
+	{ 
+		gotoxy(12, 7+i);
+		cout << (*sentencesIt)->GetAnswer(i);
 	}
 	char ch = '\0';
 	while ((ch = _getch()) != 13)
@@ -55,50 +60,80 @@ void Npc::menu()
 			case 72: //up
 				if (pos > 0)
 				{
-					gotoxy(0, pos + 3);
+					gotoxy(12, pos + 7);
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
-					cout << (*it)->answers[pos] << endl;
-					--pos;
-					gotoxy(0, pos + 3);
+					cout << (*sentencesIt)->GetAnswer(pos--);
+					gotoxy(12, pos + 7);
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
-					cout << (*it)->answers[pos] << endl;
+					cout << (*sentencesIt)->GetAnswer(pos);
 				}
 				break;
 
 			case 80: //down
-				if (pos < (*it)->answers.size() - 1)
+				if (pos < (*sentencesIt)->AnswersSize() - 1)
 				{
-					gotoxy(0, pos + 3);
+					gotoxy(12, pos + 7);
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
-					cout << (*it)->answers[pos] << endl;
-					++pos;
+					cout << (*sentencesIt)->GetAnswer(pos++);
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
-					cout << (*it)->answers[pos] << endl;
+					gotoxy(12, pos + 7);
+					cout << (*sentencesIt)->GetAnswer(pos);
 				}
 				break;
 			}
 		}
 	}
-	position = (*it)->nextq[pos];
+	position = (*sentencesIt)->GetQuestionId(pos);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 }
 
-Npc::Npc(std::string name, int hp, int atack, int defense, std::string npcfile)
+Npc::Npc(string name, int hp, int atack, int defense, string npcfile)
 	:
 	Enemy(name, hp, atack, defense),
 	position(0)
 {
-	std::ifstream f;
-	std::string path = npcfile + ".npc";
+	ifstream f;
+	string path = npcfile + ".npc";
 	f.open(path);
-	std::string line;
+	string line;
 	int pos;
 	while(std::getline(f, line))
 	{
+		Sentence *s = new Sentence;
 		int dot = line.find('.');
 		line.erase(line.begin(), line.begin() + dot + 1);
-		Sentence *s = new Sentence;
-		s->question = line;
+		string command;
+		int slash = line.find('/');
+		if (slash >= 0)
+		{
+			command = line.substr(slash + 1, line.length());
+			line.erase(line.begin() + slash, line.end());
+			istringstream iss(command);
+			string actionName; 
+			iss >> actionName;
+
+			if (actionName == "giveitem")
+			{
+				string arg1String, arg2String;
+				int arg1, arg2;
+				iss >> arg1String;
+				iss >> arg2String;
+				arg1 = atoi(arg1String.c_str());
+				arg2 = atoi(arg2String.c_str());
+				GiveItem *action = new GiveItem(arg1, arg2);
+				s->SetAction(action);
+			}
+			else if (actionName == "battle")
+			{
+				BattleAction *action = new BattleAction(this);
+				s->SetAction(action);
+			}
+		}
+		else
+		{
+			s->SetAction(NULL);
+		}
+		s->SetQuestion(line);
 		
 		while (std::getline(f, line))
 		{
@@ -106,14 +141,14 @@ Npc::Npc(std::string name, int hp, int atack, int defense, std::string npcfile)
 			{
 				line.erase(0, 1);
 				int colon = line.find(':');
-				s->nextq.push_back(atoi(line.substr(colon + 1, line.length()).c_str()));
+				s->AddNextQuestionId(atoi(line.substr(colon + 1, line.length()).c_str()));
 				line.erase(line.begin() + colon, line.end());
-				s->answers.push_back(line);
+				s->AddAnswer(line);
 				pos = f.tellg();
 			}
 			else
 			{
-				f.seekg(pos, std::ios_base::beg);
+				f.seekg(pos, ios_base::beg);
 				break;
 			}
 		}
@@ -135,15 +170,14 @@ void Npc::Talk(Player &p)
 {
 	bool end = false;
 	begin();
-	auto it = sentences.begin();
 	while(!end)
 	{
-		it = sentences.begin() + position;
-		gotoxy(0, 2);
-		for (int i = 0; i < 20 * 80; ++i)
+		sentencesIt = sentences.begin() + position;
+		gotoxy(10, 5);
+		for (int i = 0; i < 12 * 80; ++i)
 			cout << " ";
-		gotoxy(0, 2);
-		prints((*it)->question);
+		prints((*sentencesIt)->GetQuestion());
+		(*sentencesIt)->DoAction(p);
 		menu();
 		if (position < 0)
 			end = true;
