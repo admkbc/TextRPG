@@ -169,7 +169,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FoodItem.cpp" />
-    <ClCompile Include="GiveItem.cpp" />
+    <ClCompile Include="GiveItemAction.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Player.cpp" />

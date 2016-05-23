@@ -3,18 +3,18 @@
 #include "Sword.h"
 
 
-GiveItem::GiveItem(int id, int am)
+GiveItemAction::GiveItemAction(int id, int am)
 {
 	itemId = id;
 	amount = am;
 }
 
 
-GiveItem::~GiveItem()
+GiveItemAction::~GiveItemAction()
 {
 }
 
-void GiveItem::Do(Player &p)
+void GiveItemAction::Do(Player &p)
 {
 	Item *i;
 	switch (itemId)

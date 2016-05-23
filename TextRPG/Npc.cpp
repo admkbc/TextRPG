@@ -120,7 +120,7 @@ Npc::Npc(string name, int hp, int atack, int defense, string npcfile)
 				iss >> arg2String;
 				arg1 = atoi(arg1String.c_str());
 				arg2 = atoi(arg2String.c_str());
-				GiveItem *action = new GiveItem(arg1, arg2);
+				GiveItemAction *action = new GiveItemAction(arg1, arg2);
 				s->SetAction(action);
 			}
 			else if (actionName == "battle")

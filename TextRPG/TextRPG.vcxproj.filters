@@ -98,10 +98,10 @@
     <ClCompile Include="Action.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GiveItem.cpp">
+    <ClCompile Include="BattleAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BattleAction.cpp">
+    <ClCompile Include="GiveItemAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

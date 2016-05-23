@@ -1,14 +1,14 @@
 #pragma once
 #include "Action.h"
-class GiveItem :
+class GiveItemAction :
 	public Action
 {
 private:
 	int itemId;
 	int amount;
 public:
-	GiveItem(int id, int am);
-	~GiveItem();
+	GiveItemAction(int id, int am);
+	~GiveItemAction();
 	void Do(Player &p);
 };
 
