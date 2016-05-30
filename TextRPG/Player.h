@@ -7,16 +7,22 @@
 class Player :
 	public Character
 {
-private:
+protected:
 	int Happiness;
 	std::vector<Item*> items;
+	int Exp;
+
 public:
 	Player(std::string name, int hp, int atack, int defense, int happiness);
-	~Player();
+	virtual ~Player();
 	void HpInfo();
 	void Eat(FoodItem *food);
 	void AddItem(Item *i);
-
-	friend class Battle;
+	int GetHappiness();
+	virtual int GetSkill() = 0;
+	virtual int GetAttackBonus() = 0;
+	virtual int GetDefendBonus() = 0;
+	virtual bool WearWeapon(int index) = 0;
+	void AddExp(int value);
 };
 

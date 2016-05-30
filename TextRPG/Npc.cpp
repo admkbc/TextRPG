@@ -10,14 +10,6 @@
 
 using namespace std;
 
-void Npc::gotoxy(int x, int y)
-{
-	COORD c;
-	c.X = x;
-	c.Y = y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
-}
-
 void Npc::begin()
 {
 	cout << "  Rozmowca: " << Name << endl;
@@ -87,6 +79,57 @@ void Npc::menu()
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 }
 
+void Npc::AddAction(string &line, Sentence *s)
+{
+	string command;
+	int slash = line.find('/');
+	if (slash >= 0)
+	{
+		command = line.substr(slash + 1, line.length());
+		line.erase(line.begin() + slash, line.end());
+		istringstream iss(command);
+		string actionName;
+		iss >> actionName;
+
+		if (actionName == "giveitem")
+		{
+			string arg1String, arg2String;
+			int arg1, arg2;
+			iss >> arg1String;
+			iss >> arg2String;
+			arg1 = atoi(arg1String.c_str());
+			arg2 = atoi(arg2String.c_str());
+			GiveItemAction *action = new GiveItemAction(arg1, arg2);
+			s->SetAction(action);
+		}
+		else if (actionName == "battle")
+		{
+			BattleAction *action = new BattleAction(this);
+			s->SetAction(action);
+		}
+	}
+	else
+	{
+		s->SetAction(NULL);
+	}	
+}
+
+void Npc::AddQuestion(string &line, Sentence *s)
+{
+	int dot = line.find('.');
+	line.erase(line.begin(), line.begin() + dot + 1);
+	s->SetQuestion(line);
+}
+
+void Npc::AddAnswer(string &line, Sentence *s)
+{
+	line.erase(0, 1);
+	int colon = line.find(':');
+	s->AddNextQuestionId(atoi(line.substr(colon + 1, line.length()).c_str()));
+	line.erase(line.begin() + colon, line.end());
+	s->AddAnswer(line);
+}
+
 Npc::Npc(string name, int hp, int atack, int defense, string npcfile)
 	:
 	Enemy(name, hp, atack, defense),
@@ -97,53 +140,17 @@ Npc::Npc(string name, int hp, int atack, int defense, string npcfile)
 	f.open(path);
 	string line;
 	int pos;
-	while(std::getline(f, line))
+	while(getline(f, line))
 	{
 		Sentence *s = new Sentence;
-		int dot = line.find('.');
-		line.erase(line.begin(), line.begin() + dot + 1);
-		string command;
-		int slash = line.find('/');
-		if (slash >= 0)
-		{
-			command = line.substr(slash + 1, line.length());
-			line.erase(line.begin() + slash, line.end());
-			istringstream iss(command);
-			string actionName; 
-			iss >> actionName;
-
-			if (actionName == "giveitem")
-			{
-				string arg1String, arg2String;
-				int arg1, arg2;
-				iss >> arg1String;
-				iss >> arg2String;
-				arg1 = atoi(arg1String.c_str());
-				arg2 = atoi(arg2String.c_str());
-				GiveItemAction *action = new GiveItemAction(arg1, arg2);
-				s->SetAction(action);
-			}
-			else if (actionName == "battle")
-			{
-				BattleAction *action = new BattleAction(this);
-				s->SetAction(action);
-			}
-		}
-		else
-		{
-			s->SetAction(NULL);
-		}
-		s->SetQuestion(line);
 		
+		AddAction(line, s);
+		AddQuestion(line, s);
 		while (std::getline(f, line))
 		{
 			if (line[0] == '-')
 			{
-				line.erase(0, 1);
-				int colon = line.find(':');
-				s->AddNextQuestionId(atoi(line.substr(colon + 1, line.length()).c_str()));
-				line.erase(line.begin() + colon, line.end());
-				s->AddAnswer(line);
+				AddAnswer(line, s);
 				pos = f.tellg();
 			}
 			else

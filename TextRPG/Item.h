@@ -7,6 +7,6 @@ protected:
 	std::string Name;
 public:
 	Item(std::string name);
-	~Item();
+	virtual ~Item();
 };
 

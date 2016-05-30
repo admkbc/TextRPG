@@ -5,6 +5,7 @@
 #include <stdarg.h>
 #include <algorithm>
 #include <cstdlib>
+#include <windows.h>
 
 using namespace std;
 
@@ -26,9 +27,40 @@ Battle::~Battle()
 
 inline int Battle::calcDamage(Character *attacker, Character *defender)
 {
+	Player *p;
+	int skill, armorBonus, weaponBonus, randomSkill;
+	if (p = dynamic_cast<Player*>(attacker))
+	{
+		weaponBonus = p->GetAttackBonus();
+		if (weaponBonus != 0)
+		{
+			randomSkill = rand() % p->GetHappiness();
+			skill = p->GetSkill();
+		}
+		else
+		{
+			randomSkill = 0;
+			skill = 0;
+		}
+		armorBonus = 0;
+	}
+	else
+	{
+		p = dynamic_cast<Player*>(defender);
+		randomSkill = 0;
+		skill = 0;
+		weaponBonus = 0;
+		armorBonus = p->GetDefendBonus();
+	}
 	double random = (rand() % 7) + 7;
-	double damage = static_cast<double>(max(attacker->Atack-defender->Defense,1)*random/10);
+	
+	double damage = static_cast<double>(max(attacker->Atack+weaponBonus+skill*randomSkill-defender->Defense-armorBonus,1)*random/10);
 	return damage;
+}
+
+int Battle::calcItemBonus()
+{
+	return 0;
 }
 
 void Battle::begin()
@@ -59,6 +91,9 @@ bool Battle::checkDead()
 	if (Enemies[enemyIndex]->IsDead())
 	{
 		cout << Enemies[enemyIndex]->Name << " zginal" << endl;
+		int exp = (Enemies[enemyIndex]->Atack + Enemies[enemyIndex]->Defense) * 10;
+		P.AddExp(exp);
+		cout << "Otrzymales " << exp << " EXP." << endl;
 		Enemies.erase(Enemies.begin() + enemyIndex);
 		enemyIndex = 0;
 		if (!Enemies.size())
@@ -70,7 +105,6 @@ bool Battle::checkDead()
 	}
 	else
 	{
-		//Enemies[enemyIndex]->HpInfo();
 		return false;
 	}
 }
@@ -83,12 +117,18 @@ void Battle::damage(Character *ch1, Character *ch2, bool tab)
 	cout << "(HP: " << ch2->GetHp() << ")" << endl;
 }
 
-void Battle::enemyHit()
+bool Battle::enemyHit()
 {
 	for (int i = 0; i < Enemies.size(); ++i)
 	{
 		damage(Enemies[i], &P, true);
+		if (P.IsDead())
+		{
+			end(false);
+			return true;
+		}
 	}
+	return false;
 }
 
 void Battle::Start()
@@ -98,12 +138,8 @@ void Battle::Start()
 	begin();
 	if(firstenemy)
 	{
-		enemyHit();
-		if (P.IsDead())
-		{
-			end(false);
+		if(enemyHit())
 			return;
-		}
 	}
 	for (;;)
 	{
@@ -128,16 +164,8 @@ void Battle::Start()
 					return;
 			}
 		}		
-
-		for (int i = 0; i < Enemies.size(); ++i)
-		{
-			enemyHit();
-			if (P.IsDead())
-			{
-				end(false);
-				return;
-			}
-		}
+		if (enemyHit())
+			return;
 	}
 }
 

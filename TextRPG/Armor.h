@@ -1,13 +1,13 @@
 #pragma once
 #include "Item.h"
-class Sword :
+class Armor :
 	public Item
 {
 private:
-	int attackBonus;
+	int defendBonus;
 public:
-	Sword(std::string name, int attackbonus);
-	~Sword();
+	Armor(std::string name, int defendbonus);
+	~Armor();
 
 	friend class Warrior;
 };

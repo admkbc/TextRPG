@@ -12,11 +12,12 @@ private:
 	int enemyIndex;
 	bool firstenemy;
 	int calcDamage(Character *attacker, Character *defender);
+	int calcItemBonus();
 	void begin();
 	void end(bool result);
 	bool checkDead();
 	void damage(Character *ch1, Character *ch2, bool tab);
-	void enemyHit();
+	bool enemyHit();
 public:
 	Battle(Player &p, bool fenemy);
 	~Battle();

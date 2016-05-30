@@ -1,0 +1,37 @@
+0.Witaj!
+-Co sie... co sie stalo?:1
+1.Znalazlem Cie na plazy, byles ledwo zywy.
+-Kim jestes?:2
+-Gdzie ja jestem?:3
+2.Nazywam sie Xanthoceras, jestem magiem.
+-Gdzie ja jestem?:3
+3.Wlasnie znajdujemy sie w Wierzy Magow. Przynieslismy Cie tutaj, abys doszedl do siebie.
+-Kim jestes?:2
+-Dziekuje, ale mozesz mi powiedziec cos wiecej o moim polozeniu?:4
+4.Jestesmy na niewielkiej wyspie Morus, dookola nie ma nic procz oceanu.
+-Hmmm... musialem rozbic sie podczas sztormu.:5
+5.Moze teraz Ty powiesz mi cos o sobie?
+-Jestem walecznym wojownikiem!:7
+-Jestem magiem!:8
+-Jestem lucznikiem!:9
+-Jestem paladynem!:10
+-Jestem... sam nie wiem kim.:6
+6.Tutaj nie mozna byc nikim. Jak nie zdecydujesz, zginiesz przy pierwszej okazji, a zanim znajdziesz transport do domu troche tu chyba jeszcze zostaniesz.
+-Wybieram sciezke wojownika.:7
+-Wybieram sciezke magi.:8
+-Chce zostac lucznikiem.:9
+-Chce zostac paladynem.:10
+7.Swietnie! Powiniens poznac Celtisa, pogadaj z nim, on przekaze Ci tajniki poslugiwania sie mieczem.
+-Koniec:-1
+8.To super! W takim razie trzymaj ta magiczna laske. Jakbys chcial o cos zapytac to wiesz gdzie mnie szukac.
+-Co ja tu robic?:11
+9.
+-Co ja tu robic?:11
+-Koniec:-1
+10.
+-Co ja tu robic?:11
+-Koniec:-1
+11.Pogadaj z ludzmi, wielu chetnie przekaze Ci swoja wiedze za drobne przyslugi.
+-Do kogo powinienem zajrzec?:12
+12.Dobrze by bylo gdybys zagadal do naszego kartografa, on wiecej powie ci o polozeniu wyspy Morus, poza tym warto odwiedzic port i popytac czy nikt nie plynie w Twoje strony.
+-Dzieki za wszystko!:-1

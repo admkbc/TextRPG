@@ -1,0 +1,10 @@
+:50
+*Wilk 10 10 10
+:60
+*Niedzwiedz 100 20 20
+*Niedzwiedz 100 20 20
+*Niedzwiedz 100 20 20
+
++Bot 1 1 1 TestNPC
+
+-
