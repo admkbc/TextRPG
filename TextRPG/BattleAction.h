@@ -11,6 +11,6 @@ private:
 public:
 	BattleAction(Enemy *op);
 	~BattleAction();
-	void Do(Player &p);
+	void Do(Player *p);
 };
 

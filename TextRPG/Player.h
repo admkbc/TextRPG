@@ -11,6 +11,7 @@ protected:
 	int Happiness;
 	std::vector<Item*> items;
 	int Exp;
+	int coins;
 
 public:
 	Player(std::string name, int hp, int atack, int defense, int happiness);

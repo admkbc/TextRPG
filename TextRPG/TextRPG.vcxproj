@@ -160,6 +160,7 @@
     <ClInclude Include="Location.h" />
     <ClInclude Include="Mage.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Npc.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Sentence.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="Mage.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Sentence.cpp" />

@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Battle::Battle(Player &p, bool fenemy)
+Battle::Battle(Player *p, bool fenemy)
 	:
 	P(p),
 	firstenemy(fenemy)
@@ -92,7 +92,7 @@ bool Battle::checkDead()
 	{
 		cout << Enemies[enemyIndex]->Name << " zginal" << endl;
 		int exp = (Enemies[enemyIndex]->Atack + Enemies[enemyIndex]->Defense) * 10;
-		P.AddExp(exp);
+		P->AddExp(exp);
 		cout << "Otrzymales " << exp << " EXP." << endl;
 		Enemies.erase(Enemies.begin() + enemyIndex);
 		enemyIndex = 0;
@@ -121,8 +121,8 @@ bool Battle::enemyHit()
 {
 	for (int i = 0; i < Enemies.size(); ++i)
 	{
-		damage(Enemies[i], &P, true);
-		if (P.IsDead())
+		damage(Enemies[i], P, true);
+		if (P->IsDead())
 		{
 			end(false);
 			return true;
@@ -151,7 +151,7 @@ void Battle::Start()
 				cout << "Celujesz w " << Enemies[enemyIndex]->Name << endl;
 			}
 		}
-		damage(&P, Enemies[enemyIndex], false);
+		damage(P, Enemies[enemyIndex], false);
 		if (checkDead())
 			return;
 

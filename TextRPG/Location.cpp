@@ -3,18 +3,26 @@
 #include <fstream>
 #include <sstream>
 #include "Battle.h"
+#include <conio.h>
+#include <iostream>
 
 using namespace std;
+
+void Location::header()
+{
+	cout << "   " << name << endl;
+	for (int i = 0; i < 50; ++i)
+		cout << static_cast<char>(205);
+	cout << static_cast<char>(188) << endl;
+}
 
 void Location::AddEnemy()
 {
 }
 
-void Location::AddOption()
-{
-}
-
-Location::Location(string locfile)
+Location::Location(string n, string locfile)
+	:
+	name(n)
 {
 	ifstream f;
 	string path = locfile + ".loc";
@@ -53,9 +61,26 @@ Location::Location(string locfile)
 			}
 			enemies.push_back(en);
 		}
+		else if (line[0] == '+')
+		{
+			line.erase(line.begin());
+			istringstream iss(line);
+			string name, hp, attack, defend, filename;
+			iss >> name;
+			iss >> hp;
+			iss >> attack;
+			iss >> defend;
+			iss >> filename;
+			Npc *n = new Npc(name, atoi(hp.c_str()), atoi(attack.c_str()), atoi(defend.c_str()), filename);
+			npcs.push_back(n);
+		}
 		else if (line[0] == '-')
 		{
-			
+			line.erase(line.begin());
+			istringstream iss(line);
+			string id;
+			iss >> id;
+			locations.push_back(atoi(id.c_str()));
 		}
 	}
 }
@@ -65,7 +90,7 @@ Location::~Location()
 {
 }
 
-void Location::GoTo(Player& p)
+void Location::GoTo(Player* p)
 {
 	int random;
 	Battle *b;
@@ -80,6 +105,73 @@ void Location::GoTo(Player& p)
 				b->AddToSecondTeam(enemies[i]->enemies[k], NULL);
 			}
 			b->Start();
+		}
+	}
+}
+
+int Location::Menu(Player *p, Map *m)
+{
+	int pos = 0;
+	vector<string> options;
+	for (int i = 0; i < npcs.size(); ++i)
+		options.push_back("Rozmawiaj z " + npcs[i]->GetName());
+	for (int i = 0; i < locations.size(); ++i)
+		options.push_back("Idz do " + m->GetNameOfLocation(locations[i]));
+	while (1)
+	{
+		system("cls");
+		header();
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+		gotoxy(12, 7);
+		cout << options[0] << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+		for (int i = 1; i < options.size(); ++i)
+		{
+			gotoxy(12, 7 + i);
+			cout << options[i];
+		}
+		char ch = '\0';
+		while ((ch = _getch()) != 13)
+		{
+			if (ch == -32 && _kbhit())
+			{
+				char ch2 = _getch();
+				switch (ch2)
+				{
+				case 72: //up
+					if (pos > 0)
+					{
+						gotoxy(12, pos + 7);
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+						cout << options[pos--];
+						gotoxy(12, pos + 7);
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+						cout << options[pos];
+					}
+					break;
+
+				case 80: //down
+					if (pos < options.size() - 1)
+					{
+						gotoxy(12, pos + 7);
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+						cout << options[pos++];
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+						gotoxy(12, pos + 7);
+						cout << options[pos];
+					}
+					break;
+				}
+			}
+		}
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+		if (pos < npcs.size()) //npcs
+		{
+			npcs[pos]->Talk(p);
+		}
+		else //travel to location
+		{
+			return locations[pos - npcs.size()];
 		}
 	}
 }

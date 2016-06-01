@@ -12,6 +12,8 @@
 #include "MainMenu.h"
 #include "Location.h"
 #include "Mage.h"
+#include "Map.h"
+#include <iostream>
 
 class Location;
 
@@ -19,31 +21,21 @@ int main()
 {
 	srand(time(NULL));
 
-	Mage Gracz("Gracz", 100, 30, 30, 10);
-	//Enemy *Wilk = new Enemy("Wilk", 1, 1, 5);
-	//Enemy *Niedzwiedz = new Enemy("Niedzwiedz", 30, 1, 1);
-	//Enemy *Dragon = new Enemy("Dragon", 100, 50, 50);
-	// 
-	//Enemy *Demon = new Enemy("Demon", 100, 60, 60);
-	//Battle walka(Gracz, false);
-	//walka.AddToSecondTeam(Dragon, Niedzwiedz, Wilk, NULL);
-	//Gracz.AddItem(new Sword("Wooden sword", 10));
-	//Gracz.WearSword(0);
-	//walka.Start();
-	
+	//Warrior P("Gracz", 1, 1, 1, 1);
+	//Npc Xanthoceras("Xanthoceras", 1, 1, 1, "xantoceras");
+	//Xanthoceras.Talk(P);
 
-	//Npc Bot("Bot", 50, 30, 50,"TestNPC");
-	//Bot.Talk(Gracz);
+	Map map;
+	map.LoadLocationFile("Example Town", "TownExample");
+	map.LoadLocationFile("Forest", "forest");
+	map.LoadLocation(0, false);
 
-	//MainMenu Menu("Menu glowne");
-	//Menu.Show();
-	Gracz.AddItem(new Staff("Magiczny kij", 10));
-	Gracz.WearWeapon(0);
-	Location loc("TownExample");
-	loc.GoTo(Gracz);
-	//Npc mag("Xanthoceras", 500, 100, 100, "xanthoceras");
-	//mag.Talk(Gracz);
-	_getch();
+	//Mage Gracz("Gracz", 1, 1, 1, 1);
+	//Gracz.AddItem(new Staff("Magiczny kij", 10));
+	//Gracz.WearWeapon(0);
+	//Location loc("Example Town","TownExample");
+	//loc.GoTo(Gracz);
+	//loc.Menu(Gracz);
     return 0;
 }
 

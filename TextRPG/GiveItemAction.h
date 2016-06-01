@@ -9,6 +9,6 @@ private:
 public:
 	GiveItemAction(int id, int am);
 	~GiveItemAction();
-	void Do(Player &p);
+	void Do(Player *p);
 };
 

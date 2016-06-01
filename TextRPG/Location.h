@@ -1,6 +1,11 @@
 #pragma once
 #include <vector>
 #include "Enemy.h"
+#include "Npc.h"
+
+class Map;
+
+#include "Map.h"
 
 class Player;
 
@@ -13,13 +18,18 @@ struct EnemyProbability
 class Location
 {
 protected:
+	std::string name;
 	std::vector <EnemyProbability*> enemies;
-	std::vector <std::string> menuOptions;
+	std::vector <Npc*> npcs;
+	std::vector <int> locations;
+	void header();
 	void AddEnemy();
-	void AddOption();
 public:
-	Location(std::string locfile);
+	Location(std::string n, std::string locfile);
 	~Location();
-	void GoTo(Player &p);
+	void GoTo(Player *p);
+	int Menu(Player *p, Map *m);
+
+	friend class Map;
 };
 

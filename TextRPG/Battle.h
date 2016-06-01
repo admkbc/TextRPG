@@ -6,7 +6,7 @@
 class Battle
 {
 private:
-	Player &P;
+	Player *P;
 	std::vector<Character*> MyTeam;
 	std::vector<Enemy*> Enemies;
 	int enemyIndex;
@@ -19,7 +19,7 @@ private:
 	void damage(Character *ch1, Character *ch2, bool tab);
 	bool enemyHit();
 public:
-	Battle(Player &p, bool fenemy);
+	Battle(Player *p, bool fenemy);
 	~Battle();
 	void Start();
 	void AddToFirstTeam(Character *first,...);

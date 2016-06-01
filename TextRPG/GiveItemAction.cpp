@@ -14,7 +14,7 @@ GiveItemAction::~GiveItemAction()
 {
 }
 
-void GiveItemAction::Do(Player &p)
+void GiveItemAction::Do(Player *p)
 {
 	Item *i;
 	switch (itemId)
@@ -26,5 +26,5 @@ void GiveItemAction::Do(Player &p)
 		i = NULL;
 		break;
 	}
-	p.AddItem(i);
+	p->AddItem(i);
 }

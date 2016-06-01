@@ -12,6 +12,7 @@ using namespace std;
 
 void Npc::begin()
 {
+	system("cls");
 	cout << "  Rozmowca: " << Name << endl;
 	for (int i = 0; i < 50; ++i)
 		cout << static_cast<char>(205);
@@ -173,7 +174,7 @@ Npc::~Npc()
 	}
 }
 
-void Npc::Talk(Player &p)
+void Npc::Talk(Player *p)
 {
 	bool end = false;
 	begin();
@@ -189,4 +190,9 @@ void Npc::Talk(Player &p)
 		if (position < 0)
 			end = true;
 	}
+}
+
+std::string Npc::GetName()
+{
+	return Name;
 }
