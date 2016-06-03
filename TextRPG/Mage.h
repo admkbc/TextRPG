@@ -17,6 +17,9 @@ public:
 	int GetAttackBonus();
 	int GetDefendBonus();
 	int GetSkill();
-	bool WearWeapon(int index);
+	void WearItem(Item *it);
+	void ShowStats();
+	void ShowEq();
+	void RemoveFromEq(int id);
 };
 

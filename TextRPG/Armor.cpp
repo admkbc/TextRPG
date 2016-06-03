@@ -13,3 +13,9 @@ Armor::Armor(std::string name, int defendkbonus)
 Armor::~Armor()
 {
 }
+
+bool Armor::Use(Player* p)
+{
+	p->WearItem(this);
+	return false;
+}

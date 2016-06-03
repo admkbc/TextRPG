@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "Warrior.h"
+#include <iostream>
+#include <conio.h>
+#include "Funs.h"
 
+using namespace std;
 
 Warrior::Warrior(std::string name, int hp, int atack, int defense, int happiness)
 	:
@@ -35,7 +39,50 @@ int Warrior::GetDefendBonus()
 		return 0;
 }
 
-bool Warrior::WearWeapon(int index)
+void Warrior::WearItem(Item *it)
 {
-	return weapon = dynamic_cast<Sword*>(items[index]);
+	Sword *tmp;
+	tmp = dynamic_cast<Sword*>(it);
+	if (tmp != NULL)
+		weapon = tmp;
+	else 
+		armor = dynamic_cast<Armor*>(it);
+}
+
+void Warrior::ShowStats()
+{
+	MainStats();
+	_getch();
+}
+
+void Warrior::ShowEq()
+{
+	for (int i = 0; i < 160; ++i)
+		cout << '\0'; //clear 2 lines
+	gotoxy(0, 3);
+	cout << "Bron: ";
+	if (weapon != NULL)
+		cout << weapon->GetName();
+	else
+		cout << "brak";
+	cout << endl;
+	cout << "Pancerz: ";
+	if (armor != NULL)
+		cout << armor->GetName();
+	else
+		cout << "brak";
+	cout << endl << endl;
+}
+
+void Warrior::RemoveFromEq(int id)
+{
+	switch(id)
+	{
+	case -1:
+		weapon = NULL;
+		break;
+	case -2:
+		armor = NULL;
+		break;
+	}
 }

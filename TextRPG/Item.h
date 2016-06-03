@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+class Player;
+
 class Item
 {
 protected:
@@ -8,5 +10,7 @@ protected:
 public:
 	Item(std::string name);
 	virtual ~Item();
+	std::string GetName();
+	virtual bool Use(Player *p) = 0;
 };
 

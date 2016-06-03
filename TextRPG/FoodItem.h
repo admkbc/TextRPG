@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Item.h"
+#include "Player.h"
 
 class FoodItem : public Item
 {
@@ -9,6 +10,6 @@ private:
 public:
 	FoodItem(std::string name, int hp);
 	~FoodItem();
-	int GetHp();
+	bool Use(Player *p);
 };
 

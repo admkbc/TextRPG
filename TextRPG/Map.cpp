@@ -1,11 +1,16 @@
 #include "stdafx.h"
 #include "Map.h"
 #include "Warrior.h"
+#include "Mage.h"
 
 
 Map::Map()
 {
 	p = new Warrior("Ja", 20, 20, 20, 10);
+	p->AddItem(new Sword("Brazowy miecz", 10));
+	p->AddItem(new Sword("Stalowy miecz", 20));
+	p->AddItem(new FoodItem("Banan", 100));
+	p->AddItem(new Armor("Stalowa zbroja", 20));
 }
 
 

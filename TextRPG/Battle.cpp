@@ -19,10 +19,7 @@ Battle::Battle(Player *p, bool fenemy)
 
 Battle::~Battle()
 {
-	//for (int i = 0; i < MyTeam.size(); ++i)
-	//	delete MyTeam[i];
-	//for (int i = 0; i < Enemies.size(); ++i)
-	//	delete Enemies[i];
+
 }
 
 inline int Battle::calcDamage(Character *attacker, Character *defender)
@@ -84,6 +81,7 @@ void Battle::end(bool result)
 		cout << endl << "Wygrana!" << endl; 
 	else
 		cout << endl << "\tPorazka" << endl;
+	_getch();
 }
 
 bool Battle::checkDead()

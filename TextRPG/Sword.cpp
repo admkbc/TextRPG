@@ -13,3 +13,9 @@ Sword::Sword(std::string name, int attackbonus)
 Sword::~Sword()
 {
 }
+
+bool Sword::Use(Player* p)
+{
+	p->WearItem(this);
+	return false;
+}

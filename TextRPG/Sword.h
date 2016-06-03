@@ -1,5 +1,6 @@
 #pragma once
 #include "Item.h"
+#include "Player.h"
 class Sword :
 	public Item
 {
@@ -8,6 +9,7 @@ private:
 public:
 	Sword(std::string name, int attackbonus);
 	~Sword();
+	bool Use(Player *p);
 
 	friend class Warrior;
 };

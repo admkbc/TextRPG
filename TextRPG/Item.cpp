@@ -11,3 +11,8 @@ Item::Item(std::string name)
 Item::~Item()
 {
 }
+
+std::string Item::GetName()
+{
+	return Name;
+}

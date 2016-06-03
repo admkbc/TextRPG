@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Mage.h"
+#include <iostream>
+#include <conio.h>
 
+using namespace std;
 
 Mage::Mage(std::string name, int hp, int atack, int defense, int happiness)
 	:
@@ -41,7 +44,33 @@ int Mage::GetSkill()
 		return 0;
 }
 
-bool Mage::WearWeapon(int index)
+void Mage::WearItem(Item *it)
 {
-	return weapon = dynamic_cast<Staff*>(items[index]);
+	weapon = dynamic_cast<Staff*>(it);
+}
+
+void Mage::ShowStats()
+{
+	MainStats();
+	_getch();
+}
+
+void Mage::ShowEq()
+{
+	for (int i = 0; i < 80; ++i) //clear line
+		cout << '\0';
+	for (int i = 0; i < 80; ++i) //return to begin
+		cout << '\b';
+	cout << "Bron: ";
+	if (weapon != NULL)
+		cout << weapon->GetName();
+	else
+		cout << "brak";
+	cout << endl << endl;
+}
+
+void Mage::RemoveFromEq(int id)
+{
+	if (id == -1)
+		weapon == NULL;
 }

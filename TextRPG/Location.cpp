@@ -131,9 +131,9 @@ int Location::Menu(Player *p, Map *m)
 			cout << options[i];
 		}
 		char ch = '\0';
-		while ((ch = _getch()) != 13)
+		while ((ch = _getch()) == (-32))
 		{
-			if (ch == -32 && _kbhit())
+			if (_kbhit())
 			{
 				char ch2 = _getch();
 				switch (ch2)
@@ -165,13 +165,26 @@ int Location::Menu(Player *p, Map *m)
 			}
 		}
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
-		if (pos < npcs.size()) //npcs
+		switch (ch)
 		{
-			npcs[pos]->Talk(p);
+		case 'i':
+		case 'I':
+			p->ShowInventory();
+			break;
+		case 's':
+		case 'S':
+			p->ShowStats();
 		}
-		else //travel to location
+		if (ch == 13) //enter
 		{
-			return locations[pos - npcs.size()];
+			if (pos < npcs.size()) //npcs
+			{
+				npcs[pos]->Talk(p);
+			}
+			else //travel to location
+			{
+				return locations[pos - npcs.size()];
+			}
 		}
 	}
 }

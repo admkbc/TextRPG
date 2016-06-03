@@ -14,7 +14,8 @@ FoodItem::~FoodItem()
 {
 }
 
-int FoodItem::GetHp()
+bool FoodItem::Use(Player* p)
 {
-	return Hp;
+	p->AddHp(Hp);
+	return true;
 }

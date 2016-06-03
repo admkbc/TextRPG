@@ -14,3 +14,9 @@ Staff::Staff(string name, int magicbonus)
 Staff::~Staff()
 {
 }
+
+bool Staff::Use(Player* p)
+{
+	p->WearItem(this);
+	return false;
+}
