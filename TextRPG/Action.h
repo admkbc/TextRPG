@@ -6,6 +6,6 @@ class Action
 public:
 	Action();
 	virtual ~Action();
-	virtual void Do(Player *p) = 0;
+	virtual int Do(Player *p) = 0;
 };
 

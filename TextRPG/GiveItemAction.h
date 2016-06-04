@@ -6,9 +6,10 @@ class GiveItemAction :
 private:
 	int itemId;
 	int amount;
+	int cost;
 public:
-	GiveItemAction(int id, int am);
+	GiveItemAction(int id, int am, int co);
 	~GiveItemAction();
-	void Do(Player *p);
+	int Do(Player *p);
 };
 

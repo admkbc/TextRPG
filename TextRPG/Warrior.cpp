@@ -52,6 +52,7 @@ void Warrior::WearItem(Item *it)
 void Warrior::ShowStats()
 {
 	MainStats();
+	cout << endl << "Opanowanie miecza:\t" << swordSkill << endl;
 	_getch();
 }
 

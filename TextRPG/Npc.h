@@ -22,7 +22,7 @@ private:
 public:
 	Npc(std::string name, int hp, int atack, int defense, std::string npcfile);
 	~Npc();
-	void Talk(Player *p);
+	int Talk(Player *p);
 	std::string GetName();
 };
 

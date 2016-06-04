@@ -1,0 +1,52 @@
+0.Witaj!
+-Kim jestes?:1
+-Przysyla mnie Xancethoras.:2
+1.Jestem Celtis - najbardziej waleczny wojownik na calej wyspie!
+-Dalej:0
+-Koniec:-1
+2.Aaaaa, wspominal cos ze przysle jakiegos zblakanego wedrowca.
+-Gdzie moge dostac jakis miecz?:3
+-Gdzie moge dostac jakas zbroje?:10
+-Koniec:-1
+3.Mam ich calkiem sporo u siebie, wybierz cos dla siebie:
+-Drewniany prosty miecz (cena 0):4
+-Brazowy miecz (cena 200):5
+-Stalowy miecz (cena 500):6
+-Stalowy miecz dwureczny (cena 1000):7
+-Hartowany miecz (cena 1200):8
+-Hartowany miecz dwureczny (cena 2000):9
+4.Oto twoj drewniany miecz./giveitem 0 1 0
+-Dalej:2
+-Koniec:-1
+5.Oto twoj brazowy miecz./giveitem 1 1 200
+-Dalej:2
+-Koniec:-1
+6.Oto twoj stalowy miecz./giveitem 2 1 500
+-Dalej:2
+-Koniec:-1
+7.Oto twoj stalowy miecz dwureczny./giveitem 3 1 1000
+-Dalej:2
+-Koniec:-1
+8.Oto twoj hartowany miecz./giveitem 4 1 1200
+-Dalej:2
+-Koniec:-1
+9.Oto twoj hartowany miecz dwureczny./giveitem 5 1 1200
+-Dalej:2
+-Koniec:-1
+10.Mam ich calkiem sporo u siebie, wybierz cos dla siebie:
+-Drewniany pancerz (cena 200):11
+-Zelazna zbroja (cena 600):12
+-Stalowa zbroja (cena 1250):13
+-Hartowana stalowa zbroja (cena 2000):14/giveitem 9 1 2000
+11.Oto twoj drewniany pancerz./giveitem 6 1 200
+-Dalej:2
+-Koniec:-1
+12.Oto twoja zelazna zbroja./giveitem 7 1 600
+-Dalej:2
+-Koniec:-1
+13.Oto twoja stalowa zbroja./giveitem 8 1 1250
+-Dalej:2
+-Koniec:-1
+14.Oto twoja hartowana stalowa zbroja./giveitem 9 1 2000
+-Dalej:2
+-Koniec:-1

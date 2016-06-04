@@ -1,4 +1,4 @@
-0.Witaj!
+0.Ooo, w koncu sie obudziles.
 -Co sie... co sie stalo?:1
 1.Znalazlem Cie na plazy, byles ledwo zywy.
 -Kim jestes?:2
@@ -21,17 +21,22 @@
 -Wybieram sciezke magi.:8
 -Chce zostac lucznikiem.:9
 -Chce zostac paladynem.:10
-7.Swietnie! Powiniens poznac Celtisa, pogadaj z nim, on przekaze Ci tajniki poslugiwania sie mieczem.
+7.Swietnie! Powiniens poznac Celtisa, pogadaj z nim, on przekaze Ci tajniki poslugiwania sie mieczem./setreturn 1
+-Co ja tu mam robic?:11
 -Koniec:-1
-8.To super! W takim razie trzymaj ta magiczna laske. Jakbys chcial o cos zapytac to wiesz gdzie mnie szukac.
--Co ja tu robic?:11
-9.
--Co ja tu robic?:11
+8.To super! Czeka Cie duzo nauki by opanowac magie, jakby co to wiesz gdzie mnie szukac./setreturn 2
+-Co ja tu mam robic?:11
 -Koniec:-1
-10.
--Co ja tu robic?:11
+9.Nie mozesz zostac lucznikiem, bo programista jeszcze nie zaimplementowal.
+-Powrot:-5
+-Koniec:-1
+10.Zglos sie do Abiesa, on opiekuje sie palladynami./setreturn 3
+-Co ja tu mam robic?:11
 -Koniec:-1
 11.Pogadaj z ludzmi, wielu chetnie przekaze Ci swoja wiedze za drobne przyslugi.
 -Do kogo powinienem zajrzec?:12
-12.Dobrze by bylo gdybys zagadal do naszego kartografa, on wiecej powie ci o polozeniu wyspy Morus, poza tym warto odwiedzic port i popytac czy nikt nie plynie w Twoje strony.
+12.Dobrze by bylo gdybys zagadal do naszego kartografa, on wiecej powie ci o polozeniu wyspy Morus,\n poza tym warto odwiedzic port i popytac czy nikt nie plynie w Twoje strony.
+-Jak moge zarobic?:13
+-Dzieki za wszystko!:-1
+13.Wykonujac zadania, lecz na poczatek podaruje Ci troche zlotych monet.
 -Dzieki za wszystko!:-1

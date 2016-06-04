@@ -21,6 +21,6 @@ public:
 	std::string GetQuestion();
 	int AnswersSize();
 	void SetAction(Action *a);
-	void DoAction(Player *p);
+	int DoAction(Player *p);
 };
 

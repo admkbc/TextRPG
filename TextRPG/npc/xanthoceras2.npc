@@ -1,0 +1,31 @@
+0.Witaj ponownie.
+-Jak leci?:1
+-Gdzie moge zdobyc jakis wyposazenie dla maga?.:2
+-Koniec:-1
+1.Fajnie, fajnie..
+-Powrot:0
+2.Mam ich cale mnostwo:
+-Drewniana rozdzka (cena 0):3
+-Podmuch wiatru (cena 200):4
+-Zywiol wody (cena 500):5
+-Tsunami (cena 1000):6
+-Zywiol ognia (cena 1850):7
+-Uderzenie piorunem (cena 2500):8
+3.Oto twoja drewniana rozdzka./giveitem 10 1 0
+-Powrot:0
+-Koniec:-1
+4.Oto Podmuch wiatru./giveitem 11 1 200
+-Powrot:0
+-Koniec:-1
+5.Oto Zywiol wody./giveitem 12 1 500
+-Powrot:0
+-Koniec:-1
+6.Oto Tsunami./giveitem 13 1 1000
+-Powrot:0
+-Koniec:-1
+7.Oto Zywiol ognia./giveitem 14 1 1850
+-Powrot:0
+-Koniec:-1
+8.Oto Uderzenie piorunem./giveitem 15 1 2500
+-Powrot:0
+-Koniec:-1

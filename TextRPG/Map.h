@@ -12,7 +12,7 @@ private:
 	Player *p;
 	int nextLocation;
 public:
-	Map();
+	Map(Player *P);
 	~Map();
 	void LoadLocationFile(std::string name, std::string locfile);
 	void LoadLocation(int id, bool mons);

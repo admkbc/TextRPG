@@ -25,7 +25,7 @@ Location::Location(string n, string locfile)
 	name(n)
 {
 	ifstream f;
-	string path = locfile + ".loc";
+	string path = "loc/" + locfile + ".loc";
 	f.open(path);
 	string line;
 	int pos;

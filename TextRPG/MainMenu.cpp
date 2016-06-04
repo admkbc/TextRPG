@@ -4,10 +4,11 @@
 #include <iostream>
 #include <conio.h>
 #include "Funs.h"
+#include "Game.h"
 
 using namespace std;
 
-void MainMenu::keyboard()
+int MainMenu::keyboard()
 {
 	char ch = '\0';
 	int pos = 0;
@@ -44,6 +45,7 @@ void MainMenu::keyboard()
 			}
 		}
 	}
+	return pos;
 }
 
 MainMenu::MainMenu(string title, int x, int y)
@@ -53,8 +55,9 @@ MainMenu::MainMenu(string title, int x, int y)
 	Y(y)
 {
 
-	options.push_back("Test1");
-	options.push_back("Test2");
+	options.push_back("Nowa gra");
+	options.push_back("Wczytaj gre");
+	options.push_back("Wyjscie");
 }
 
 
@@ -62,8 +65,11 @@ MainMenu::~MainMenu()
 {
 }
 
-void MainMenu::Show()
+void MainMenu::Show(bool save)
 {
+	Game g;
+	if (save)
+		options.insert(options.begin() + 2, "Zapisz gre");
 	cout << "   " << Title << endl;
 	for (int i = 0; i < 50; ++i)
 		cout << static_cast<char>(205);
@@ -77,5 +83,26 @@ void MainMenu::Show()
 		gotoxy(12, 7 + i);
 		cout << options[i];
 	}
-	keyboard();
+	int result = keyboard();
+	switch(result)
+	{
+	case 0:
+		g.NewGame();
+		break;
+	case 1:
+		g.LoadGame();
+		break;
+	case 2:
+		if (save)
+		{
+			
+		}
+		else
+		{
+			
+		}
+		break;
+	case 3:
+		break;
+	}
 }

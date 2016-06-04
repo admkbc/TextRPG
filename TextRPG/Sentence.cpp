@@ -51,8 +51,10 @@ void Sentence::SetAction(Action *a)
 	action = a;
 }
 
-void Sentence::DoAction(Player *p)
+int Sentence::DoAction(Player *p)
 {
 	if (action != NULL)
-		action->Do(p);
+		return action->Do(p);
+	else
+		return 0;
 }

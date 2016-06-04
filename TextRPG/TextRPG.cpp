@@ -14,28 +14,15 @@
 #include "Mage.h"
 #include "Map.h"
 #include <iostream>
+#include "Game.h"
 
 class Location;
 
 int main()
 {
 	srand(time(NULL));
-
-	//Warrior P("Gracz", 1, 1, 1, 1);
-	//Npc Xanthoceras("Xanthoceras", 1, 1, 1, "xantoceras");
-	//Xanthoceras.Talk(P);
-
-	Map map;
-	map.LoadLocationFile("Example Town", "TownExample");
-	map.LoadLocationFile("Forest", "forest");
-	map.LoadLocation(0, false);
-
-	//Mage Gracz("Gracz", 1, 1, 1, 1);
-	//Gracz.AddItem(new Staff("Magiczny kij", 10));
-	//Gracz.WearWeapon(0);
-	//Location loc("Example Town","TownExample");
-	//loc.GoTo(Gracz);
-	//loc.Menu(Gracz);
+	MainMenu menu("Menu glowne",10,10);
+	menu.Show(false);
     return 0;
 }
 

@@ -78,6 +78,7 @@ Player::Player(std::string name, int hp, int atack, int defense, int happiness)
 {
 	Exp = 0;
 	maxHp = 100;
+	coins = 200;
 }
 
 Player::~Player()
@@ -142,4 +143,14 @@ void Player::MainStats()
 	cout << "HP:\t\t" << Hp << "/" << maxHp << "\t\t\tExp:\t\t" << Exp << endl;
 	cout << "Atak:\t\t" << Atack << "\t\t\tObrona:\t\t" << Defense << endl;
 	cout << "Szczescie:\t" << Happiness << "\t\t\tMonety:\t\t" << coins << endl;
+}
+
+void Player::GiveMoney(int value)
+{
+	coins += value;
+}
+
+int Player::GetMoney()
+{
+	return coins;
 }

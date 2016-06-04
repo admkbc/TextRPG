@@ -7,6 +7,7 @@
 #include <sstream>
 #include "GiveItemAction.h"
 #include "BattleAction.h"
+#include "SetReturnAction.h"
 
 using namespace std;
 
@@ -94,18 +95,29 @@ void Npc::AddAction(string &line, Sentence *s)
 
 		if (actionName == "giveitem")
 		{
-			string arg1String, arg2String;
-			int arg1, arg2;
+			string arg1String, arg2String, arg3String;
+			int arg1, arg2, arg3;
 			iss >> arg1String;
 			iss >> arg2String;
+			iss >> arg3String;
 			arg1 = atoi(arg1String.c_str());
 			arg2 = atoi(arg2String.c_str());
-			GiveItemAction *action = new GiveItemAction(arg1, arg2);
+			arg3 = atoi(arg3String.c_str());
+			GiveItemAction *action = new GiveItemAction(arg1, arg2, arg3);
 			s->SetAction(action);
 		}
 		else if (actionName == "battle")
 		{
 			BattleAction *action = new BattleAction(this);
+			s->SetAction(action);
+		}
+		else if (actionName == "setreturn")
+		{
+			string arg1String;
+			int arg1;
+			iss >> arg1String;
+			arg1 = atoi(arg1String.c_str());
+			SetReturnAction *action = new SetReturnAction(arg1);
 			s->SetAction(action);
 		}
 	}
@@ -137,7 +149,7 @@ Npc::Npc(string name, int hp, int atack, int defense, string npcfile)
 	position(0)
 {
 	ifstream f;
-	string path = npcfile + ".npc";
+	string path = "npc/" + npcfile + ".npc";
 	f.open(path);
 	string line;
 	int pos;
@@ -174,9 +186,12 @@ Npc::~Npc()
 	}
 }
 
-void Npc::Talk(Player *p)
+int Npc::Talk(Player *p)
 {
+	position = 0;
 	bool end = false;
+	int value = 0;
+	int ret = 0;
 	begin();
 	while(!end)
 	{
@@ -185,11 +200,14 @@ void Npc::Talk(Player *p)
 		for (int i = 0; i < 12 * 80; ++i)
 			cout << " ";
 		prints((*sentencesIt)->GetQuestion());
-		(*sentencesIt)->DoAction(p);
+		value = (*sentencesIt)->DoAction(p);
+		if (value != 0)
+			ret = value;
 		menu();
 		if (position < 0)
 			end = true;
 	}
+	return ret;
 }
 
 std::string Npc::GetName()

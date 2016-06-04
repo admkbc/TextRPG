@@ -52,6 +52,8 @@ void Mage::WearItem(Item *it)
 void Mage::ShowStats()
 {
 	MainStats();
+	cout << endl << "Poziom magii:\t" << magicSkill << endl;
+	cout << "Mana:\t\t" << mana << "/" << maxMana << endl;
 	_getch();
 }
 

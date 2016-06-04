@@ -35,5 +35,7 @@ public:
 	void AddExp(int value);
 	void ShowInventory();
 	void MainStats();
+	void GiveMoney(int value);
+	int GetMoney();
 };
 

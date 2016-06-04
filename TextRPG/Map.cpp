@@ -4,15 +4,15 @@
 #include "Mage.h"
 
 
-Map::Map()
+Map::Map(Player *P)
+	:
+	p(P)
 {
-	p = new Warrior("Ja", 20, 20, 20, 10);
-	p->AddItem(new Sword("Brazowy miecz", 10));
-	p->AddItem(new Sword("Stalowy miecz", 20));
-	p->AddItem(new FoodItem("Banan", 100));
-	p->AddItem(new Armor("Stalowa zbroja", 20));
+	//p->AddItem(new Sword("Miecz dwureczny twoja stara", 999));
+	//p->AddItem(new Sword("Drewniany miecz", 5));
+	//p->AddItem(new Armor("Stalowa zbroja", 10));
+	//p->AddItem(new FoodItem("Banan", 100));
 }
-
 
 Map::~Map()
 {
