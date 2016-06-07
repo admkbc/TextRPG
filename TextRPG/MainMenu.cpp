@@ -44,7 +44,13 @@ int MainMenu::keyboard()
 				break;
 			}
 		}
+		else if (ch == 27)
+		{
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+			return -1;
+		}
 	}
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 	return pos;
 }
 
@@ -65,44 +71,51 @@ MainMenu::~MainMenu()
 {
 }
 
-void MainMenu::Show(bool save)
+int MainMenu::Show(bool save)
 {
 	Game g;
-	if (save)
-		options.insert(options.begin() + 2, "Zapisz gre");
-	cout << "   " << Title << endl;
-	for (int i = 0; i < 50; ++i)
-		cout << static_cast<char>(205);
-	cout << static_cast<char>(188) << endl;
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
-	gotoxy(12, 7);
-	cout << options[0] << endl;
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
-	for (int i = 1; i < options.size(); ++i)
+	int result = -1;
+	while (true)
 	{
-		gotoxy(12, 7 + i);
-		cout << options[i];
-	}
-	int result = keyboard();
-	switch(result)
-	{
-	case 0:
-		g.NewGame();
-		break;
-	case 1:
-		g.LoadGame();
-		break;
-	case 2:
+		system("cls");
 		if (save)
+			options.insert(options.begin() + 2, "Zapisz gre");
+		cout << "   " << Title << endl;
+		for (int i = 0; i < 50; ++i)
+			cout << static_cast<char>(205);
+		cout << static_cast<char>(188) << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+		gotoxy(12, 7);
+		cout << options[0] << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+		for (int i = 1; i < options.size(); ++i)
 		{
-			
+			gotoxy(12, 7 + i);
+			cout << options[i];
 		}
-		else
+		result = keyboard();
+		switch (result)
 		{
-			
+		case 0:
+			g.NewGame();
+			break;
+		case 1:
+			g.LoadGame();
+			break;
+		case 2:
+			if (save)
+			{
+
+			}
+			else
+			{
+
+			}
+			break;
+		case 3:
+			return -1;
+			break;
 		}
-		break;
-	case 3:
-		break;
 	}
+	return result;
 }

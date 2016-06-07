@@ -2,6 +2,7 @@
 #include "Mage.h"
 #include <iostream>
 #include <conio.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -75,4 +76,9 @@ void Mage::RemoveFromEq(int id)
 {
 	if (id == -1)
 		weapon == NULL;
+}
+
+void Mage::AddMana(int value)
+{
+	mana = min(mana + value, maxMana);
 }

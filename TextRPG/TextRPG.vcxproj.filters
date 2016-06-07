@@ -96,6 +96,12 @@
     <ClInclude Include="Paladin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GiveHappinessAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ManaPotion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -174,6 +180,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Paladin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GiveHappinessAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ManaPotion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

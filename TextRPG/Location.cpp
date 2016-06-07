@@ -5,6 +5,7 @@
 #include "Battle.h"
 #include <conio.h>
 #include <iostream>
+#include "MainMenu.h"
 
 using namespace std;
 
@@ -111,6 +112,7 @@ void Location::GoTo(Player* p)
 
 int Location::Menu(Player *p, Map *m)
 {
+	MainMenu *menu;
 	int pos = 0;
 	vector<string> options;
 	for (int i = 0; i < npcs.size(); ++i)
@@ -174,6 +176,12 @@ int Location::Menu(Player *p, Map *m)
 		case 's':
 		case 'S':
 			p->ShowStats();
+			break;
+		case 27:
+			menu = new MainMenu("Paused", 10, 10);
+			if (menu->Show(true) == -1)
+				return -1;
+			break;
 		}
 		if (ch == 13) //enter
 		{

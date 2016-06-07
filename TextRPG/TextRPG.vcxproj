@@ -156,11 +156,13 @@
     <ClInclude Include="FoodItem.h" />
     <ClInclude Include="Funs.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GiveHappinessAction.h" />
     <ClInclude Include="GiveItemAction.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Location.h" />
     <ClInclude Include="Mage.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="ManaPotion.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Npc.h" />
     <ClInclude Include="Paladin.h" />
@@ -184,11 +186,13 @@
     <ClCompile Include="FoodItem.cpp" />
     <ClCompile Include="Funs.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GiveHappinessAction.cpp" />
     <ClCompile Include="GiveItemAction.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="Mage.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="ManaPotion.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Paladin.cpp" />

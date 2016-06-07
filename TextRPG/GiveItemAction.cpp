@@ -85,7 +85,7 @@ int GiveItemAction::Do(Player *p)
 	}
 	else
 	{
-		gotoxy(10, 5);
+		gotoxy(10, 6);
 		cout << "Nie masz wystarczjaco zlotych monet.";
 		return 0;
 	}

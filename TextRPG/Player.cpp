@@ -122,11 +122,13 @@ void Player::ShowInventory()
 		gotoxy(0, 6);
 		id = printItems();
 		if (id >= 0)
+		{
 			if (items[id]->Use(this))
 			{
 				delete items[id];
 				items.erase(items.begin() + id);
 			}
+		}
 		else if (id > -3)
 			this->RemoveFromEq(id);
 	}
@@ -153,4 +155,9 @@ void Player::GiveMoney(int value)
 int Player::GetMoney()
 {
 	return coins;
+}
+
+void Player::AddHappiness(int value)
+{
+	Happiness += value;
 }

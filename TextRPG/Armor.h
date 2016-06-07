@@ -12,5 +12,6 @@ public:
 	bool Use(Player *p);
 
 	friend class Warrior;
+	friend class Paladin;
 };
 

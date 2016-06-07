@@ -37,5 +37,6 @@ public:
 	void MainStats();
 	void GiveMoney(int value);
 	int GetMoney();
+	void AddHappiness(int value);
 };
 

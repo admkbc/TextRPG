@@ -1,6 +1,7 @@
 0.Witaj ponownie.
 -Jak leci?:1
 -Gdzie moge zdobyc jakis wyposazenie dla maga?.:2
+-Jak moge zwiekszyc swoje szczescie w walce?:9
 -Koniec:-1
 1.Fajnie, fajnie..
 -Powrot:0
@@ -27,5 +28,21 @@
 -Powrot:0
 -Koniec:-1
 8.Oto Uderzenie piorunem./giveitem 15 1 2500
+-Powrot:0
+-Koniec:-1
+9.To dojsc skomplikowane, musisz zyskac przychylnosc zywiolow.
+-Jak moge to zrobic?:10
+-Koniec:-1
+10.Nooooo... jak sypniesz groszem to mysle ze Cie polubia:
+-Zwieksz szczescie o 1 (cena 1000):11
+-Zwieksz szczescie o 5 (cena 4500):12
+-Zwieksz szczescie o 10 (cena 8000):13
+11.Od teraz masz wieksza szczescie w walce./givehappiness 1 1000
+-Powrot:0
+-Koniec:-1
+12.Od teraz masz wieksza szczescie w walce./givehappiness 5 4500
+-Powrot:0
+-Koniec:-1
+13.Od teraz masz wieksza szczescie w walce./givehappiness 10 8000
 -Powrot:0
 -Koniec:-1

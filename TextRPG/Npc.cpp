@@ -8,6 +8,7 @@
 #include "GiveItemAction.h"
 #include "BattleAction.h"
 #include "SetReturnAction.h"
+#include "GiveHappinessAction.h"
 
 using namespace std;
 
@@ -118,6 +119,17 @@ void Npc::AddAction(string &line, Sentence *s)
 			iss >> arg1String;
 			arg1 = atoi(arg1String.c_str());
 			SetReturnAction *action = new SetReturnAction(arg1);
+			s->SetAction(action);
+		}
+		else if (actionName == "givehappiness")
+		{
+			string arg1String, arg2String;
+			int arg1, arg2;
+			iss >> arg1String;
+			iss >> arg2String;
+			arg1 = atoi(arg1String.c_str());
+			arg2 = atoi(arg2String.c_str());
+			GiveHappinessAction *action = new GiveHappinessAction(arg1, arg2);
 			s->SetAction(action);
 		}
 	}

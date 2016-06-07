@@ -8,10 +8,10 @@ Map::Map(Player *P)
 	:
 	p(P)
 {
-	//p->AddItem(new Sword("Miecz dwureczny twoja stara", 999));
-	//p->AddItem(new Sword("Drewniany miecz", 5));
-	//p->AddItem(new Armor("Stalowa zbroja", 10));
-	//p->AddItem(new FoodItem("Banan", 100));
+	p->AddItem(new Sword("Miecz dwureczny twoja stara", 999));
+	p->AddItem(new Sword("Drewniany miecz", 5));
+	p->AddItem(new Armor("Stalowa zbroja", 10));
+	p->AddItem(new FoodItem("Banan", 100));
 }
 
 Map::~Map()
@@ -27,7 +27,7 @@ void Map::LoadLocation(int id, bool mons)
 {
 	int locId = id;
 	bool monsters = mons;
-	while (true)
+	while (locId >= 0)
 	{
 		if (locations.size() > 0)
 		{

@@ -13,6 +13,6 @@ private:
 public:
 	MainMenu(std::string title, int X, int Y);
 	~MainMenu();
-	void Show(bool save);
+	int Show(bool save);
 };
 

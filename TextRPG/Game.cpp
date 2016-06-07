@@ -42,7 +42,7 @@ void Game::NewGame()
 		map = new Map(new Mage(name, 10, 1, 1, 1));
 		break;
 	case 3:
-		//map = new Map(new Paladin(name, 10, 1, 1, 1));
+		map = new Map(static_cast<Warrior*>(new Paladin(name, 10, 1, 1, 1)));
 		break;
 	}
 	map->LoadLocationFile("Miasto", "town");

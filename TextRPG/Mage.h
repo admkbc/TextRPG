@@ -21,5 +21,6 @@ public:
 	void ShowStats();
 	void ShowEq();
 	void RemoveFromEq(int id);
+	void AddMana(int value);
 };
 
