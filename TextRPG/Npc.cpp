@@ -192,10 +192,8 @@ Npc::Npc(string name, int hp, int atack, int defense, string npcfile)
 
 Npc::~Npc()
 {
-	for (auto it = sentences.begin(); it != sentences.end(); ++it)
-	{
-		delete *it;
-	}
+	for (int i = 0; i < sentences.size(); ++i)
+		delete sentences[i];
 }
 
 int Npc::Talk(Player *p)

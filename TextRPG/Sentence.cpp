@@ -9,6 +9,7 @@ Sentence::Sentence()
 
 Sentence::~Sentence()
 {
+	delete action;
 }
 
 void Sentence::AddNextQuestionId(int value)

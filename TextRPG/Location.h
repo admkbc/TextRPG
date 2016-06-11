@@ -23,7 +23,6 @@ protected:
 	std::vector <Npc*> npcs;
 	std::vector <int> locations;
 	void header();
-	void AddEnemy();
 public:
 	Location(std::string n, std::string locfile);
 	~Location();

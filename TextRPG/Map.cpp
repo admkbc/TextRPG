@@ -8,14 +8,15 @@ Map::Map(Player *P)
 	:
 	p(P)
 {
-	p->AddItem(new Sword("Miecz dwureczny twoja stara", 999));
-	p->AddItem(new Sword("Drewniany miecz", 5));
-	p->AddItem(new Armor("Stalowa zbroja", 10));
-	p->AddItem(new FoodItem("Banan", 100));
+
 }
 
 Map::~Map()
 {
+	for (int i = 0; i < locations.size(); ++i)
+		delete locations[i];
+
+	delete p;
 }
 
 void Map::LoadLocationFile(std::string name, std::string locfile)

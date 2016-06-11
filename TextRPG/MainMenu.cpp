@@ -69,11 +69,11 @@ MainMenu::MainMenu(string title, int x, int y)
 
 MainMenu::~MainMenu()
 {
+
 }
 
 int MainMenu::Show(bool save)
 {
-	Game g;
 	int result = -1;
 	while (true)
 	{
@@ -109,7 +109,7 @@ int MainMenu::Show(bool save)
 			}
 			else
 			{
-
+				return -1;
 			}
 			break;
 		case 3:

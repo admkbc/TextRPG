@@ -1,28 +1,30 @@
 // TextRPG.cpp : Defines the entry point for the console application.
 //
-
 #include "stdafx.h"
-#include <conio.h>
-#include "Player.h"
-#include "Battle.h"
+#define CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #include <ctime>
-#include "Enemy.h"
-#include "Npc.h"
-#include "Warrior.h"
 #include "MainMenu.h"
-#include "Location.h"
-#include "Mage.h"
-#include "Map.h"
-#include <iostream>
-#include "Game.h"
+#include <conio.h>
 
-class Location;
+
+#ifdef _DEBUG 
+#ifndef DBG_NEW 
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ ) 
+#define new DBG_NEW 
+#endif 
+#endif  // _DEBUG
 
 int main()
 {
-	srand(time(NULL));
-	MainMenu menu("Menu glowne",10,10);
-	menu.Show(false);
+	{
+		srand(time(NULL));
+		MainMenu menu("Menu glowne", 10, 10);
+		menu.Show(false);
+	}
+	_CrtDumpMemoryLeaks();
+	_getch();
     return 0;
 }
 

@@ -17,6 +17,8 @@ void Game::prolog(int &prof, string &name)
 	Player *p = new Warrior(name, 10, 1, 1, 1);
 	Npc *bot = new Npc("Xanthoceras", 200, 80, 80, "xanthoceras");
 	prof = bot->Talk(p);
+	delete p;
+	delete bot;
 }
 
 Game::Game()
@@ -26,6 +28,8 @@ Game::Game()
 
 Game::~Game()
 {
+	if (map != NULL)
+		delete map;
 }
 
 void Game::NewGame()

@@ -17,10 +17,6 @@ void Location::header()
 	cout << static_cast<char>(188) << endl;
 }
 
-void Location::AddEnemy()
-{
-}
-
 Location::Location(string n, string locfile)
 	:
 	name(n)
@@ -89,6 +85,17 @@ Location::Location(string n, string locfile)
 
 Location::~Location()
 {
+	for (int i = 0; i < npcs.size(); ++i)
+		delete npcs[i];
+
+	for (int i = 0; i < enemies.size(); ++i)
+	{
+		for (int k = 0; k < (enemies[i]->enemies).size(); ++k)
+		{
+			delete enemies[i]->enemies[k];
+		}
+		delete enemies[i];
+	}
 }
 
 void Location::GoTo(Player* p)
@@ -180,7 +187,11 @@ int Location::Menu(Player *p, Map *m)
 		case 27:
 			menu = new MainMenu("Paused", 10, 10);
 			if (menu->Show(true) == -1)
+			{
+				delete menu;
 				return -1;
+			}
+			delete menu;
 			break;
 		}
 		if (ch == 13) //enter

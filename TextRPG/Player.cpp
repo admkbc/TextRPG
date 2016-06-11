@@ -78,12 +78,13 @@ Player::Player(std::string name, int hp, int atack, int defense, int happiness)
 {
 	Exp = 0;
 	maxHp = 100;
-	coins = 200;
+	coins = 2000;
 }
 
 Player::~Player()
 {
-
+	for (int i = 0; i < items.size(); ++i)
+		delete items[i];
 }
 
 void Player::HpInfo()

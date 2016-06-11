@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "Game.h"
 
 class MainMenu
 {
@@ -10,6 +11,7 @@ private:
 	std::vector <std::string> options;
 	int X;
 	int Y;
+	Game g;
 public:
 	MainMenu(std::string title, int X, int Y);
 	~MainMenu();
