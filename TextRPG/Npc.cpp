@@ -9,6 +9,8 @@
 #include "BattleAction.h"
 #include "SetReturnAction.h"
 #include "GiveHappinessAction.h"
+#include "SetQuestAction.h"
+#include "GivePrizeAction.h"
 
 using namespace std;
 
@@ -27,7 +29,7 @@ void Npc::prints(string text)
 	for (int i = 0; i < text.length(); ++i)
 	{
 		cout << text[i];
-		Sleep(80);
+		Sleep(60);
 	}
 	cout << endl;
 }
@@ -130,6 +132,26 @@ void Npc::AddAction(string &line, Sentence *s)
 			arg1 = atoi(arg1String.c_str());
 			arg2 = atoi(arg2String.c_str());
 			GiveHappinessAction *action = new GiveHappinessAction(arg1, arg2);
+			s->SetAction(action);
+		}
+		else if (actionName == "setquest")
+		{
+			string arg1String, arg2String;
+			int arg1, arg2;
+			iss >> arg1String;
+			iss >> arg2String;
+			arg1 = atoi(arg1String.c_str());
+			arg2 = atoi(arg2String.c_str());
+			SetQuestAction *action = new SetQuestAction(arg1, arg2);
+			s->SetAction(action);
+		}
+		else if (actionName == "giveprize")
+		{
+			string arg1String;
+			int arg1;
+			iss >> arg1String;
+			arg1 = atoi(arg1String.c_str());
+			GivePrizeAction *action = new GivePrizeAction(arg1);
 			s->SetAction(action);
 		}
 	}

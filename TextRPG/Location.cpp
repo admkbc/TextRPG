@@ -40,14 +40,19 @@ Location::Location(string n, string locfile)
 			{
 				if (line[0] == '*')
 				{
-					string name, hp, attack, defend;
+					string name, hp, attack, defend, quest;
+					int questInt;
 					line.erase(line.begin());
 					istringstream e(line);
 					e >> name;
 					e >> hp;
 					e >> attack;
 					e >> defend;
-					en->enemies.push_back(new Enemy(name, atoi(hp.c_str()), atoi(attack.c_str()), atoi(defend.c_str())));
+					if (!(e >> quest))
+						questInt = -1;
+					else
+						questInt = atoi(quest.c_str());
+					en->enemies.push_back(new Enemy(name, atoi(hp.c_str()), atoi(attack.c_str()), atoi(defend.c_str()), questInt));
 					pos = f.tellg();
 				}
 				else

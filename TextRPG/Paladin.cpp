@@ -10,6 +10,8 @@ Paladin::Paladin(std::string name, int hp, int atack, int defense, int happiness
 	Mage(name, hp, atack, defense, happiness),
 	Warrior(name, hp, atack, defense, happiness)
 {
+	maxMana = 10;
+	mana = 10;
 }
 
 

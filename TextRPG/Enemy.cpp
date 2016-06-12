@@ -4,9 +4,10 @@
 
 using namespace std;
 
-Enemy::Enemy(std::string name, int hp, int atack, int defense)
+Enemy::Enemy(std::string name, int hp, int atack, int defense, int quest = -1)
 	:
-	Character(name, hp, atack, defense)
+	Character(name, hp, atack, defense),
+	questId(quest)
 {
 }
 

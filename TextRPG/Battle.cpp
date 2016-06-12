@@ -78,7 +78,7 @@ void Battle::end(bool result)
 	for (int i = 0; i < 70; ++i)
 		cout << static_cast<char>(205);
 	if (result)
-		cout << endl << "Wygrana!" << endl; 
+		cout << endl << "Wygrana!" << endl;
 	else
 		cout << endl << "\tPorazka" << endl;
 	_getch();
@@ -92,6 +92,8 @@ bool Battle::checkDead()
 		int exp = (Enemies[enemyIndex]->Atack + Enemies[enemyIndex]->Defense) * 10;
 		P->AddExp(exp);
 		cout << "Otrzymales " << exp << " EXP." << endl;
+		if (Enemies[enemyIndex]->questId >= 0)
+			P->quests[Enemies[enemyIndex]->questId]->Next();
 		Enemies.erase(Enemies.begin() + enemyIndex);
 		enemyIndex = 0;
 		if (!Enemies.size())

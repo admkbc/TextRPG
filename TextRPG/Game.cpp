@@ -52,14 +52,16 @@ void Game::NewGame()
 	map->LoadLocationFile("Miasto", "town");
 	map->LoadLocationFile("Wieza magow", "magictower");
 	map->LoadLocationFile("Las", "forest");
+	map->LoadLocationFile("Jaskinia smoka", "cave");
 	map->LoadLocation(0, false);
 }
 
 void Game::LoadGame()
 {
-	map = new Map(new Warrior("test", 10, 1, 1, 1));
+	map = new Map(new Warrior("test", 100, 20, 20, 20));
 	map->LoadLocationFile("Miasto", "town");
 	map->LoadLocationFile("Wieza magow", "magictower");
 	map->LoadLocationFile("Las", "forest");
+	map->LoadLocationFile("Jaskinia smoka", "cave");
 	map->LoadLocation(0, false);
 }

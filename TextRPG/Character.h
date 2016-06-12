@@ -9,8 +9,6 @@ protected:
 	int Atack;
 	int Defense;
 	bool Dead;
-	
-	
 
 public:
 	Character(std::string name, int hp, int atack, int defense);

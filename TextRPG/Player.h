@@ -2,7 +2,7 @@
 #include "Character.h"
 #include "Item.h"
 #include <vector>
-#include "FoodItem.h"
+#include "Quest.h"
 
 class Player :
 	public Character
@@ -10,10 +10,12 @@ class Player :
 private:
 	void inventoryHead();
 	int printItems();
+	void LoadQuests();
 
 protected:
 	int Happiness;
 	std::vector<Item*> items;
+	std::vector<Quest*> quests;
 	int Exp;
 	int coins;
 	int maxHp;
@@ -38,5 +40,9 @@ public:
 	void GiveMoney(int value);
 	int GetMoney();
 	void AddHappiness(int value);
+
+	friend class SetQuestAction;
+	friend class GivePrizeAction;
+	friend class Battle;
 };
 

@@ -72,6 +72,12 @@ int Player::printItems()
 	return pos;
 }
 
+void Player::LoadQuests()
+{
+	Quest *q = new Quest("killdragon");
+	quests.push_back(q);
+}
+
 Player::Player(std::string name, int hp, int atack, int defense, int happiness)
 	:
 	Character(name, hp, atack, defense), Happiness(happiness)
@@ -79,12 +85,16 @@ Player::Player(std::string name, int hp, int atack, int defense, int happiness)
 	Exp = 0;
 	maxHp = 100;
 	coins = 2000;
+	LoadQuests();
 }
 
 Player::~Player()
 {
 	for (int i = 0; i < items.size(); ++i)
 		delete items[i];
+
+	for (int i = 0; i < quests.size(); ++i)
+		delete quests[i];
 }
 
 void Player::HpInfo()

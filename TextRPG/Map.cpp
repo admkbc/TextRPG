@@ -2,13 +2,13 @@
 #include "Map.h"
 #include "Warrior.h"
 #include "Mage.h"
+#include "FoodItem.h"
 
 
 Map::Map(Player *P)
 	:
 	p(P)
 {
-
 }
 
 Map::~Map()

@@ -10,8 +10,8 @@ Mage::Mage(std::string name, int hp, int atack, int defense, int happiness)
 	:
 	Player(name, hp, atack, defense, happiness)
 {
-	maxMana = 5;
-	mana = 5;
+	maxMana = 10;
+	mana = 10;
 }
 
 

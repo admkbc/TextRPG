@@ -158,6 +158,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GiveHappinessAction.h" />
     <ClInclude Include="GiveItemAction.h" />
+    <ClInclude Include="GivePrizeAction.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Location.h" />
     <ClInclude Include="Mage.h" />
@@ -167,13 +168,14 @@
     <ClInclude Include="Npc.h" />
     <ClInclude Include="Paladin.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Quest.h" />
     <ClInclude Include="Sentence.h" />
+    <ClInclude Include="SetQuestAction.h" />
     <ClInclude Include="SetReturnAction.h" />
     <ClInclude Include="Staff.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Town.h" />
     <ClInclude Include="Warrior.h" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +190,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GiveHappinessAction.cpp" />
     <ClCompile Include="GiveItemAction.cpp" />
+    <ClCompile Include="GivePrizeAction.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="Mage.cpp" />
@@ -197,7 +200,9 @@
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Paladin.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Quest.cpp" />
     <ClCompile Include="Sentence.cpp" />
+    <ClCompile Include="SetQuestAction.cpp" />
     <ClCompile Include="SetReturnAction.cpp" />
     <ClCompile Include="Staff.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -208,7 +213,6 @@
     </ClCompile>
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="TextRPG.cpp" />
-    <ClCompile Include="Town.cpp" />
     <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
