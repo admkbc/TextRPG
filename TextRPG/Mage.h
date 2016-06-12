@@ -3,7 +3,7 @@
 #include "Staff.h"
 
 class Mage :
-	public Player
+	public virtual Player
 {
 protected:
 	int mana;

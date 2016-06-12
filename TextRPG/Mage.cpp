@@ -52,10 +52,38 @@ void Mage::WearItem(Item *it)
 
 void Mage::ShowStats()
 {
-	MainStats();
-	cout << endl << "Poziom magii:\t" << magicSkill << endl;
-	cout << "Mana:\t\t" << mana << "/" << maxMana << endl;
-	_getch();
+	char ch;
+	do
+	{
+		MainStats();
+		cout << endl << "Poziom magii:\t" << magicSkill << endl;
+		cout << "Mana:\t\t" << mana << "/" << maxMana << endl;
+		ch = _getch();
+		if (Exp >= 50)
+		{
+			switch (ch)
+			{
+			case 'a':
+			case 'A':
+				Exp -= 50;
+				++Atack;
+				break;
+			case 'd':
+			case 'D':
+				Exp -= 50;
+				++Defense;
+				break;
+			case '1':
+				Exp -= 50;
+				++magicSkill;
+				break;
+			case '2':
+				Exp -= 50;
+				++maxMana;
+				break;
+			}
+		}
+	} while (ch != 27);
 }
 
 void Mage::ShowEq()

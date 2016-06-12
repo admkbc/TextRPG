@@ -45,15 +45,39 @@ void Warrior::WearItem(Item *it)
 	tmp = dynamic_cast<Sword*>(it);
 	if (tmp != NULL)
 		weapon = tmp;
-	else 
+	else
 		armor = dynamic_cast<Armor*>(it);
 }
 
 void Warrior::ShowStats()
 {
-	MainStats();
-	cout << endl << "Opanowanie miecza:\t" << swordSkill << endl;
-	_getch();
+	char ch;
+	do
+	{
+		MainStats();
+		cout << endl << "Opanowanie miecza:\t" << swordSkill << endl;
+		ch = _getch();
+		if (Exp >= 50)
+		{
+			switch (ch)
+			{
+			case 'a':
+			case 'A':
+				Exp -= 50;
+				++Atack;
+				break;
+			case 'd':
+			case 'D':
+				Exp -= 50;
+				++Defense;
+				break;
+			case '1':
+				Exp -= 50;
+				++swordSkill;
+				break;
+			}
+		}
+	} while (ch != 27);
 }
 
 void Warrior::ShowEq()
@@ -77,7 +101,7 @@ void Warrior::ShowEq()
 
 void Warrior::RemoveFromEq(int id)
 {
-	switch(id)
+	switch (id)
 	{
 	case -1:
 		weapon = NULL;

@@ -4,7 +4,7 @@
 #include "Armor.h"
 
 class Warrior :
-	public Player
+	public virtual Player
 {
 protected:
 	int swordSkill;
