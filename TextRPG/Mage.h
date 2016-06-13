@@ -22,5 +22,6 @@ public:
 	void ShowEq();
 	void RemoveFromEq(int id);
 	void AddMana(int value);
+	void Save(std::ofstream &f);
 };
 

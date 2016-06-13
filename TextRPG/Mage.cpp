@@ -3,6 +3,7 @@
 #include <iostream>
 #include <conio.h>
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -66,7 +67,7 @@ void Mage::ShowStats()
 			case 'a':
 			case 'A':
 				Exp -= 50;
-				++Atack;
+				++Attack;
 				break;
 			case 'd':
 			case 'D':
@@ -109,4 +110,13 @@ void Mage::RemoveFromEq(int id)
 void Mage::AddMana(int value)
 {
 	mana = min(mana + value, maxMana);
+}
+
+void Mage::Save(std::ofstream& f)
+{
+	f << 1 << endl;
+	SaveMainStats(f);
+	f << mana << endl;
+	f << maxMana << endl;
+	f << magicSkill << endl;
 }

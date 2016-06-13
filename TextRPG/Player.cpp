@@ -4,6 +4,7 @@
 #include <conio.h>
 #include "Windows.h"
 #include "Funs.h"
+#include <fstream>
 
 using namespace std;
 
@@ -154,7 +155,7 @@ void Player::MainStats()
 	cout << static_cast<char>(188) << endl << endl;
 
 	cout << "HP:\t\t" << Hp << "/" << maxHp << "\t\t\tExp:\t\t" << Exp << endl;
-	cout << "Atak:\t\t" << Atack << "\t\t\tObrona:\t\t" << Defense << endl;
+	cout << "Atak:\t\t" << Attack << "\t\t\tObrona:\t\t" << Defense << endl;
 	cout << "Szczescie:\t" << Happiness << "\t\t\tMonety:\t\t" << coins << endl;
 }
 
@@ -184,4 +185,16 @@ void Player::ShowQuests()
 		if (quests[i]->IsTaken())
 			cout << quests[i]->GetName() << endl;
 	_getch();
+}
+
+void Player::SaveMainStats(std::ofstream &f)
+{
+	f << Name << endl;
+	f << Hp << endl;
+	f << Attack << endl;
+	f << Defense << endl;
+	f << Happiness << endl;
+	f << Exp << endl;
+	f << coins << endl;
+	f << maxHp << endl;
 }

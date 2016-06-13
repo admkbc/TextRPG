@@ -11,7 +11,7 @@ private:
 	std::vector <std::string> options;
 	int X;
 	int Y;
-	Game g;
+	static Game g;
 public:
 	MainMenu(std::string title, int X, int Y);
 	~MainMenu();

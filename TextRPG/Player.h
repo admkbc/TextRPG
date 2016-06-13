@@ -41,7 +41,8 @@ public:
 	int GetMoney();
 	void AddHappiness(int value);
 	void ShowQuests();
-
+	void SaveMainStats(std::ofstream &f);
+	virtual void Save(std::ofstream &f) = 0;
 	friend class SetQuestAction;
 	friend class GivePrizeAction;
 	friend class Battle;

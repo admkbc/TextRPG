@@ -3,6 +3,7 @@
 #include <iostream>
 #include <conio.h>
 #include "Funs.h"
+#include <fstream>
 
 using namespace std;
 
@@ -64,7 +65,7 @@ void Warrior::ShowStats()
 			case 'a':
 			case 'A':
 				Exp -= 50;
-				++Atack;
+				++Attack;
 				break;
 			case 'd':
 			case 'D':
@@ -110,4 +111,11 @@ void Warrior::RemoveFromEq(int id)
 		armor = NULL;
 		break;
 	}
+}
+
+void Warrior::Save(std::ofstream& f)
+{
+	f << 0 << endl;
+	SaveMainStats(f);
+	f << swordSkill << endl;
 }

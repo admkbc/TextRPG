@@ -2,6 +2,7 @@
 #include "Paladin.h"
 #include <iostream>
 #include <conio.h>
+#include <fstream>
 
 using namespace std;
 
@@ -67,7 +68,7 @@ void Paladin::ShowStats()
 			case 'a':
 			case 'A':
 				Exp -= 50;
-				++Atack;
+				++Attack;
 				break;
 			case 'd':
 			case 'D':
@@ -99,4 +100,13 @@ void Paladin::ShowEq()
 void Paladin::RemoveFromEq(int id)
 {
 	Warrior::RemoveFromEq(id);
+}
+
+void Paladin::Save(std::ofstream& f)
+{
+	f << 2 << endl;
+	f << swordSkill << endl;
+	f << mana << endl;
+	f << maxMana << endl;
+	f << magicSkill << endl;
 }

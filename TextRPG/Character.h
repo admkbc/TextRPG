@@ -6,7 +6,7 @@ class Character
 protected:
 	std::string Name;
 	int Hp;
-	int Atack;
+	int Attack;
 	int Defense;
 	bool Dead;
 

@@ -51,7 +51,7 @@ inline int Battle::calcDamage(Character *attacker, Character *defender)
 	}
 	double random = (rand() % 7) + 7;
 	
-	double damage = static_cast<double>(max(attacker->Atack+weaponBonus+skill*randomSkill-defender->Defense-armorBonus,1)*random/10);
+	double damage = static_cast<double>(max(attacker->Attack+weaponBonus+skill*randomSkill-defender->Defense-armorBonus,1)*random/10);
 	return damage;
 }
 
@@ -65,7 +65,7 @@ void Battle::begin()
 	system("cls");
 	for (int i = 0; i < Enemies.size(); ++i)
 	{
-		cout << "  Przeciwnik: " << Enemies[i]->Name << "(Attack: " << Enemies[i]->Atack << ", Defense: " << Enemies[i]->Defense << ")" << endl;
+		cout << "  Przeciwnik: " << Enemies[i]->Name << "(Attack: " << Enemies[i]->Attack << ", Defense: " << Enemies[i]->Defense << ")" << endl;
 	}
 	for (int i = 0; i < 51; ++i)
 		cout << static_cast<char>(205); 
@@ -89,7 +89,7 @@ bool Battle::checkDead()
 	if (Enemies[enemyIndex]->IsDead())
 	{
 		cout << Enemies[enemyIndex]->Name << " zginal" << endl;
-		int exp = (Enemies[enemyIndex]->Atack + Enemies[enemyIndex]->Defense) * 10;
+		int exp = (Enemies[enemyIndex]->Attack + Enemies[enemyIndex]->Defense) * 10;
 		P->AddExp(exp);
 		cout << "Otrzymales " << exp << " EXP." << endl;
 		if (Enemies[enemyIndex]->questId >= 0)

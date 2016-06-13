@@ -6,6 +6,7 @@
 #include "Npc.h"
 #include "Mage.h"
 #include "Paladin.h"
+#include <fstream>
 
 using namespace std;
 
@@ -58,10 +59,20 @@ void Game::NewGame()
 
 void Game::LoadGame()
 {
-	map = new Map(new Warrior("test", 100, 20, 20, 20));
+	Warrior *w = new Warrior("test", 100, 20, 20, 20);
+	map = new Map(w);
 	map->LoadLocationFile("Miasto", "town");
 	map->LoadLocationFile("Wieza magow", "magictower");
 	map->LoadLocationFile("Las", "forest");
 	map->LoadLocationFile("Jaskinia smoka", "cave");
 	map->LoadLocation(0, false);
+	
+}
+
+void Game::SaveGame()
+{
+	std::ofstream f;
+	f.open("test", ios::trunc | ios::out);
+	map->Save(f);
+	f.close();
 }

@@ -3,12 +3,13 @@
 #include "Warrior.h"
 #include "Mage.h"
 #include "FoodItem.h"
+#include <fstream>
+#include <iostream>
 
 
 Map::Map(Player *P)
-	:
-	p(P)
 {
+	p = P;
 }
 
 Map::~Map()
@@ -38,6 +39,7 @@ void Map::LoadLocation(int id, bool mons)
 			monsters = true;
 		}
 	}
+	p;
 }
 
 std::string Map::GetNameOfLocation(int i)
@@ -47,3 +49,10 @@ std::string Map::GetNameOfLocation(int i)
 	else
 		return "";
 }
+
+void Map::Save(std::ofstream &f)
+{
+	if (p != NULL)
+		p->Save(f);
+}
+

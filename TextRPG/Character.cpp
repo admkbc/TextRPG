@@ -4,7 +4,7 @@
 
 Character::Character(std::string name,int hp,int atack,int defense)
 	:
-	Name(name),Hp(hp),Atack(atack),Defense(defense),Dead(false)
+	Name(name),Hp(hp),Attack(atack),Defense(defense),Dead(false)
 {
 
 }

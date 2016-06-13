@@ -16,5 +16,6 @@ public:
 	void ShowStats();
 	void ShowEq();
 	void RemoveFromEq(int id);
+	void Save(std::ofstream &f);
 };
 

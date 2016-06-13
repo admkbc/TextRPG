@@ -74,12 +74,16 @@ MainMenu::~MainMenu()
 
 int MainMenu::Show(bool save)
 {
+	bool saveMenu = true;
 	int result = -1;
 	while (true)
 	{
 		system("cls");
-		if (save)
+		if (save && saveMenu)
+		{
 			options.insert(options.begin() + 2, "Zapisz gre");
+			saveMenu = false;
+		}
 		cout << "   " << Title << endl;
 		for (int i = 0; i < 50; ++i)
 			cout << static_cast<char>(205);
@@ -104,18 +108,17 @@ int MainMenu::Show(bool save)
 			break;
 		case 2:
 			if (save)
-			{
-
-			}
+				g.SaveGame();
 			else
-			{
 				return -1;
-			}
 			break;
 		case 3:
 			return -1;
 			break;
 		}
 	}
+	saveMenu = true;
 	return result;
 }
+
+Game MainMenu::g;
