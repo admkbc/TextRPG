@@ -49,3 +49,16 @@ void Quest::Close()
 {
 	checkpoint = -1;
 }
+
+bool Quest::IsTaken()
+{
+	if (checkpoint > 0 && checkpoint < meta)
+		return true;
+	else
+		return false;
+}
+
+std::string Quest::GetName()
+{
+	return title;
+}

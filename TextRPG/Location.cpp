@@ -181,6 +181,10 @@ int Location::Menu(Player *p, Map *m)
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 		switch (ch)
 		{
+		case 'q':
+		case 'Q':
+			p->ShowQuests();
+			break;
 		case 'i':
 		case 'I':
 			p->ShowInventory();

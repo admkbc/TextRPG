@@ -16,5 +16,7 @@ public:
 	Quest(std::string filename);
 	~Quest();
 	void Close();
+	bool IsTaken();
+	std::string GetName();
 };
 

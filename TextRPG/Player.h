@@ -40,6 +40,7 @@ public:
 	void GiveMoney(int value);
 	int GetMoney();
 	void AddHappiness(int value);
+	void ShowQuests();
 
 	friend class SetQuestAction;
 	friend class GivePrizeAction;

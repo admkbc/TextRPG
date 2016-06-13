@@ -172,3 +172,16 @@ void Player::AddHappiness(int value)
 {
 	Happiness += value;
 }
+
+void Player::ShowQuests()
+{
+	system("cls");
+	cout << "   Zadanie" << endl;
+	for (int i = 0; i < 50; ++i)
+		cout << static_cast<char>(205);
+	cout << static_cast<char>(188) << endl << endl;
+	for (int i = 0; i < quests.size(); ++i)
+		if (quests[i]->IsTaken())
+			cout << quests[i]->GetName() << endl;
+	_getch();
+}
