@@ -6,6 +6,7 @@ class Game
 {
 private:
 	void prolog(int &prof, std::string &name);
+	void LoadLocations();
 	Map *map;
 public:
 	Game();

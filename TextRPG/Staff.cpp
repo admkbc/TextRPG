@@ -20,3 +20,8 @@ bool Staff::Use(Player* p)
 	p->WearItem(this);
 	return false;
 }
+
+void Staff::Save(std::ofstream& f)
+{
+	f << 3 << Name << " " << magicBonus << endl;
+}

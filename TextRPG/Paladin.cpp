@@ -6,14 +6,15 @@
 
 using namespace std;
 
-Paladin::Paladin(std::string name, int hp, int atack, int defense, int happiness)
+Paladin::Paladin(std::string name, int hp, int atack, int defense, int happiness, int exp, int money, int maxhp)
 	:
-	Mage(name, hp, atack, defense, happiness),
-	Warrior(name, hp, atack, defense, happiness),
-	Player(name, hp, atack, defense, happiness)
+	Mage(name, hp, atack, defense, happiness, exp, money, maxhp),
+	Warrior(name, hp, atack, defense, happiness, exp, money, maxhp),
+	Player(name, hp, atack, defense, happiness, exp, money, maxhp)
 {
 	maxMana = 10;
 	mana = 10;
+	swordSkill = 0;
 }
 
 
@@ -109,4 +110,9 @@ void Paladin::Save(std::ofstream& f)
 	f << mana << endl;
 	f << maxMana << endl;
 	f << magicSkill << endl;
+	SaveItemsAndQuests(f);
+}
+
+void Paladin::LoadStatsFromFile(std::ifstream& f)
+{
 }

@@ -62,3 +62,8 @@ std::string Quest::GetName()
 {
 	return title;
 }
+
+void Quest::Save(std::ofstream& f)
+{
+	f << checkpoint << endl;
+}

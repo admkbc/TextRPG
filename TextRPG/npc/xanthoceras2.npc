@@ -2,6 +2,7 @@
 -Jak leci?:1
 -Gdzie moge zdobyc jakis wyposazenie dla maga?.:2
 -Jak moge zwiekszyc swoje szczescie w walce?:9
+-Masz do sprzedania jakies magiczne mikstury?:14
 -Koniec:-1
 1.Fajnie, fajnie..
 -Powrot:0
@@ -44,5 +45,12 @@
 -Powrot:0
 -Koniec:-1
 13.Od teraz masz wieksza szczescie w walce./givehappiness 10 8000
+-Powrot:0
+-Koniec:-1
+14.Pewnie!
+-Magiczna mikstura(mana +10, cena 100):15
+-Powrot:0
+-Koniec:-1
+15.Prosze, oto Twoja mikstura./giveitem 16 100
 -Powrot:0
 -Koniec:-1

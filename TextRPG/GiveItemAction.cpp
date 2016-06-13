@@ -5,6 +5,8 @@
 #include <iostream>
 #include "Funs.h"
 #include "Staff.h"
+#include "ManaPotion.h"
+#include "FoodItem.h"
 
 using namespace std;
 
@@ -75,6 +77,12 @@ int GiveItemAction::Do(Player *p)
 		case 15:
 			i = new Staff("Uderzenie piorunem", 30);
 			break; 
+		case 16:
+			i = new ManaPotion("Magiczna mikstura", 10);
+			break;
+		case 17:
+			i = new FoodItem("Banan", 100);
+			break;
 		default:
 			i = NULL;
 			break;

@@ -11,5 +11,6 @@ public:
 	FoodItem(std::string name, int hp);
 	~FoodItem();
 	bool Use(Player *p);
+	void Save(std::ofstream &f);
 };
 

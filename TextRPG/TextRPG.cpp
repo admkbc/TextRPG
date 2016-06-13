@@ -23,8 +23,8 @@ int main()
 		MainMenu menu("Menu glowne", 10, 10);
 		menu.Show(false);
 	}
-	_CrtDumpMemoryLeaks();
-	_getch();
+	_CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF);
+	//_CrtDumpMemoryLeaks();
     return 0;
 }
 

@@ -5,6 +5,13 @@
 #include "Windows.h"
 #include "Funs.h"
 #include <fstream>
+#include "Item.h"
+#include <sstream>
+#include "Sword.h"
+#include "Staff.h"
+#include "ManaPotion.h"
+#include "FoodItem.h"
+#include "Armor.h"
 
 using namespace std;
 
@@ -79,14 +86,14 @@ void Player::LoadQuests()
 	quests.push_back(q);
 }
 
-Player::Player(std::string name, int hp, int atack, int defense, int happiness)
+Player::Player(std::string name, int hp, int atack, int defense, int happiness, int exp, int money, int maxhp)
 	:
 	Character(name, hp, atack, defense), Happiness(happiness)
 {
-	Exp = 0;
-	maxHp = 100;
-	coins = 2000;
 	LoadQuests();
+	Exp = exp;
+	coins = money;
+	maxHp = maxhp;
 }
 
 Player::~Player()
@@ -197,4 +204,57 @@ void Player::SaveMainStats(std::ofstream &f)
 	f << Exp << endl;
 	f << coins << endl;
 	f << maxHp << endl;
+}
+
+void Player::SaveItemsAndQuests(std::ofstream& f)
+{
+	f << "I" << endl;
+	for (int i = 0; i < items.size(); ++i)
+		items[i]->Save(f);
+	f << "Q" << endl;
+	for (int i = 0; i < quests.size(); ++i)
+		quests[i]->Save(f);
+}
+
+void Player::LoadItemsAndQuests(std::ifstream& f)
+{
+	string line, name, tmp;
+	getline(f, line);
+	int itemType;
+	if (line[0] == 'I')
+	{
+		while (getline(f, line) && line[0] != 'Q')
+		{
+			itemType = static_cast<int>(line[0]) - 48;
+			line.erase(line.begin());
+			istringstream iss(line);
+			iss >> name;
+			while (iss >> tmp)
+				if (!isdigit(tmp[0]))
+					name = name + ' ' + tmp;
+
+			switch (itemType)
+			{
+			case 0:
+				items.push_back(new Armor(name, atoi(tmp.c_str())));
+				break;
+			case 1:
+				items.push_back(new FoodItem(name, atoi(tmp.c_str())));
+				break;
+			case 2:
+				items.push_back(new ManaPotion(name, atoi(tmp.c_str())));
+				break;
+			case 3:
+				items.push_back(new Staff(name, atoi(tmp.c_str())));
+				break;
+			case 4:
+				items.push_back(new Sword(name, atoi(tmp.c_str())));
+				break;
+			}
+		}
+	}
+	for (int i = 0; getline(f, line); ++i)
+	{
+		quests[i]->SetCheckpoint(atoi(line.c_str()));
+	}
 }

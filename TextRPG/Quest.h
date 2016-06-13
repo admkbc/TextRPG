@@ -18,5 +18,6 @@ public:
 	void Close();
 	bool IsTaken();
 	std::string GetName();
+	void Save(std::ofstream &f);
 };
 

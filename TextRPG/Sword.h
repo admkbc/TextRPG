@@ -10,6 +10,7 @@ public:
 	Sword(std::string name, int attackbonus);
 	~Sword();
 	bool Use(Player *p);
+	void Save(std::ofstream &f);
 
 	friend class Warrior;
 	friend class Paladin;

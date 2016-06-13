@@ -7,7 +7,7 @@ class Paladin :
 	public virtual Warrior
 {
 public:
-	Paladin(std::string name, int hp, int atack, int defense, int happiness);
+	Paladin(std::string name, int hp, int atack, int defense, int happiness, int exp, int money, int maxhp);
 	~Paladin();
 	int GetSkill();
 	int GetAttackBonus();
@@ -17,5 +17,6 @@ public:
 	void ShowEq();
 	void RemoveFromEq(int id);
 	void Save(std::ofstream &f);
+	void LoadStatsFromFile(std::ifstream &f);
 };
 

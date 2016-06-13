@@ -78,9 +78,20 @@ void Battle::end(bool result)
 	for (int i = 0; i < 70; ++i)
 		cout << static_cast<char>(205);
 	if (result)
+	{
 		cout << endl << "Wygrana!" << endl;
+	}
 	else
+	{
 		cout << endl << "\tPorazka" << endl;
+		if (!P->items.empty()) 
+		{
+			int random = rand() % P->items.size();
+			cout << endl << "Przeciwnik zabral Ci " << P->items[random]->GetName();
+			P->items.erase(P->items.begin() + random);
+		}
+		P->Hp = 0;
+	}
 	_getch();
 }
 

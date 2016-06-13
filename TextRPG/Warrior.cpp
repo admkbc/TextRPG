@@ -7,11 +7,11 @@
 
 using namespace std;
 
-Warrior::Warrior(std::string name, int hp, int atack, int defense, int happiness)
+Warrior::Warrior(std::string name, int hp, int atack, int defense, int happiness, int exp, int money, int maxhp)
 	:
-	Player(name, hp, atack, defense, happiness)
+	Player(name, hp, atack, defense, happiness, exp, money, maxhp)
 {
-	swordSkill = 10;
+	swordSkill = 0;
 }
 
 
@@ -118,4 +118,13 @@ void Warrior::Save(std::ofstream& f)
 	f << 0 << endl;
 	SaveMainStats(f);
 	f << swordSkill << endl;
+	SaveItemsAndQuests(f);
+}
+
+void Warrior::LoadStatsFromFile(std::ifstream& f)
+{
+	string swordskill;
+	getline(f, swordskill);
+	swordSkill = atoi(swordskill.c_str());
+	LoadItemsAndQuests(f);
 }

@@ -7,9 +7,9 @@
 
 using namespace std;
 
-Mage::Mage(std::string name, int hp, int atack, int defense, int happiness)
+Mage::Mage(std::string name, int hp, int atack, int defense, int happiness, int exp, int money, int maxhp)
 	:
-	Player(name, hp, atack, defense, happiness)
+	Player(name, hp, atack, defense, happiness, exp, money, maxhp)
 {
 	maxMana = 10;
 	mana = 10;
@@ -119,4 +119,9 @@ void Mage::Save(std::ofstream& f)
 	f << mana << endl;
 	f << maxMana << endl;
 	f << magicSkill << endl;
+	SaveItemsAndQuests(f);
+}
+
+void Mage::LoadStatsFromFile(std::ifstream& f)
+{
 }

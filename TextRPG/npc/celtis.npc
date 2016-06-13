@@ -9,6 +9,7 @@
 -Gdzie moge dostac jakas zbroje?:10
 -Masz dla mnie jakies zadanie?:15
 -Zabilem smoka! Daj nagrode.:18
+-Dasz mi banana za darmo?:19
 -Koniec:-1
 3.Mam ich calkiem sporo u siebie, wybierz cos dla siebie:
 -Drewniany prosty miecz (cena 0):4
@@ -63,3 +64,6 @@
 -Koniec:-1
 18./giveprize 0
 -Dalej:2
+19.Dobra./giveitem 17 0
+-Powrot:2
+-Koniec:-1

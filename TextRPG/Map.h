@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <fstream>
 
 class Location;
 
@@ -9,7 +10,7 @@ class Map
 {
 private:
 	std::vector<Location*> locations;
-	
+	Player *p;
 	int nextLocation;
 public:
 	Map(Player *P);
@@ -19,6 +20,6 @@ public:
 	std::string GetNameOfLocation(int i);
 	void Save(std::ofstream &f);
 	void Test();
-	Player *p;
+	void LoadMapFromFile(std::ifstream &f);
 };
 

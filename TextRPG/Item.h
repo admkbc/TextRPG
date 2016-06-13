@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <fstream>
 
 class Player;
 
@@ -12,5 +13,6 @@ public:
 	virtual ~Item();
 	std::string GetName();
 	virtual bool Use(Player *p) = 0;
+	virtual void Save(std::ofstream &f) = 0;
 };
 

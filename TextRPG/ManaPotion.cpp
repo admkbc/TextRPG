@@ -26,3 +26,8 @@ bool ManaPotion::Use(Player* p)
 	}
 	return false;		
 }
+
+void ManaPotion::Save(std::ofstream& f)
+{
+	f << 2 << Name << " " << value;
+}

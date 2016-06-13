@@ -8,5 +8,6 @@ public:
 	ManaPotion(std::string name, int v);
 	~ManaPotion();
 	bool Use(Player *p);
+	void Save(std::ofstream &f);
 };
 

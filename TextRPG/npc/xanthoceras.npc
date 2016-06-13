@@ -8,7 +8,7 @@
 3.Wlasnie znajdujemy sie w Wiezy Magow. Przynieslismy Cie tutaj, abys doszedl do siebie.
 -Kim jestes?:2
 -Dziekuje, ale mozesz mi powiedziec cos wiecej o moim polozeniu?:4
-4.Jestesmy na niewielkiej wyspie Morus, dookola nie ma nic procz oceanu.
+4.Jestesmy na niewielkiej wyspie, dookola nie ma nic procz oceanu.
 -Hmmm... musialem rozbic sie podczas sztormu.:5
 5.Moze teraz Ty powiesz mi cos o sobie?
 -Jestem walecznym wojownikiem!:7
@@ -30,12 +30,12 @@
 9.Nie mozesz zostac lucznikiem, bo programista jeszcze nie zaimplementowal.
 -Powrot:-5
 -Koniec:-1
-10.Zglos sie do Abiesa, on opiekuje sie palladynami./setreturn 3
+10.Swietnie! jakbys potrzebowal jakis magicznych nowinek to jestes tu zawsze mile widziany./setreturn 3
 -Co ja tu mam robic?:11
 -Koniec:-1
 11.Pogadaj z ludzmi, wielu chetnie przekaze Ci swoja wiedze za drobne przyslugi.
 -Do kogo powinienem zajrzec?:12
-12.Odwiedzic port i popytac czy nikt nie plynie w Twoje strony, ale najpierw musisz zarobic troche monet.
+12.Wykonuj zadania, zeby zarobic troche zlotych monet.
 -Jak moge zarobic?:13
 -Dzieki za wszystko!:-1
 13.Wykonujac zadania, lecz na poczatek podaruje Ci troche zlotych monet.

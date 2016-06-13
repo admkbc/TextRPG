@@ -7,6 +7,7 @@
 #include "Mage.h"
 #include "Paladin.h"
 #include <fstream>
+#include <conio.h>
 
 using namespace std;
 
@@ -15,11 +16,19 @@ void Game::prolog(int &prof, string &name)
 	system("cls");
 	cout << "Podaj swoje imie: ";
 	cin >> name;
-	Player *p = new Warrior(name, 10, 1, 1, 1);
+	Player *p = new Warrior(name, 10, 1, 1, 1,0,0,10);
 	Npc *bot = new Npc("Xanthoceras", 200, 80, 80, "xanthoceras");
 	prof = bot->Talk(p);
 	delete p;
 	delete bot;
+}
+
+void Game::LoadLocations()
+{
+	map->LoadLocationFile("Miasto", "town");
+	map->LoadLocationFile("Wieza magow", "magictower");
+	map->LoadLocationFile("Las", "forest");
+	map->LoadLocationFile("Jaskinia smoka", "cave");
 }
 
 Game::Game()
@@ -41,38 +50,49 @@ void Game::NewGame()
 	switch(prof)
 	{
 	case 1:
-		map = new Map(new Warrior(name, 10, 1, 1, 1));
+		map = new Map(new Warrior(name, 10, 1, 1, 1,0,2000,100));
 		break;
 	case 2:
-		map = new Map(new Mage(name, 10, 1, 1, 1));
+		map = new Map(new Mage(name, 10, 1, 1, 1, 0, 2000, 100));
 		break;
 	case 3:
-		map = new Map(static_cast<Warrior*>(new Paladin(name, 10, 1, 1, 1)));
+		map = new Map(static_cast<Warrior*>(new Paladin(name, 10, 1, 1, 1, 0, 2000, 100)));
 		break;
 	}
-	map->LoadLocationFile("Miasto", "town");
-	map->LoadLocationFile("Wieza magow", "magictower");
-	map->LoadLocationFile("Las", "forest");
-	map->LoadLocationFile("Jaskinia smoka", "cave");
+	LoadLocations();
 	map->LoadLocation(0, false);
 }
 
 void Game::LoadGame()
 {
-	Warrior *w = new Warrior("test", 100, 20, 20, 20);
-	map = new Map(w);
-	map->LoadLocationFile("Miasto", "town");
-	map->LoadLocationFile("Wieza magow", "magictower");
-	map->LoadLocationFile("Las", "forest");
-	map->LoadLocationFile("Jaskinia smoka", "cave");
+	string filename;
+	system("cls");
+	cout << "Podaj nazwe: ";
+	cin >> filename;
+	filename += ".sav";
+	std::ifstream f;
+	f.open(filename);
+	if (!f.good())
+	{
+		cout << "Bledna nazwa!";
+		_getch();
+		return;
+	}
+	map = new Map(NULL);
+	LoadLocations();
+	map->LoadMapFromFile(f);
 	map->LoadLocation(0, false);
-	
 }
 
 void Game::SaveGame()
 {
+	string filename;
+	system("cls");
+	cout << "Podaj nazwe: ";
+	cin >> filename;
+	filename += ".sav";
 	std::ofstream f;
-	f.open("test", ios::trunc | ios::out);
+	f.open(filename, ios::trunc | ios::out);
 	map->Save(f);
 	f.close();
 }

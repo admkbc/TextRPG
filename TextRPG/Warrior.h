@@ -11,7 +11,7 @@ protected:
 	Sword *weapon;
 	Armor *armor;
 public:
-	Warrior(std::string name, int hp, int atack, int defense, int happiness);
+	Warrior(std::string name, int hp, int atack, int defense, int happiness, int exp, int money, int maxhp);
 	~Warrior();
 	int GetSkill();
 	int GetAttackBonus();
@@ -21,5 +21,6 @@ public:
 	void ShowEq();
 	void RemoveFromEq(int id);
 	void Save(std::ofstream &f);
+	void LoadStatsFromFile(std::ifstream &f);
 };
 
