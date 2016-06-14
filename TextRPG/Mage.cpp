@@ -124,4 +124,12 @@ void Mage::Save(std::ofstream& f)
 
 void Mage::LoadStatsFromFile(std::ifstream& f)
 {
+	string swordskill;
+	getline(f, swordskill);
+	mana = atoi(swordskill.c_str());
+	getline(f, swordskill);
+	maxMana= atoi(swordskill.c_str());
+	getline(f, swordskill);
+	magicSkill = atoi(swordskill.c_str());
+	LoadItemsAndQuests(f);
 }

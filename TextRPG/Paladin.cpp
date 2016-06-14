@@ -115,4 +115,14 @@ void Paladin::Save(std::ofstream& f)
 
 void Paladin::LoadStatsFromFile(std::ifstream& f)
 {
+	string swordskill;
+	getline(f, swordskill);
+	swordSkill = atoi(swordskill.c_str());
+	getline(f, swordskill);
+	mana = atoi(swordskill.c_str());
+	getline(f, swordskill);
+	maxMana = atoi(swordskill.c_str());
+	getline(f, swordskill);
+	magicSkill = atoi(swordskill.c_str());
+	LoadItemsAndQuests(f);
 }
