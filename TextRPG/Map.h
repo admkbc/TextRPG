@@ -19,7 +19,6 @@ public:
 	void LoadLocation(int id, bool mons);
 	std::string GetNameOfLocation(int i);
 	void Save(std::ofstream &f);
-	void Test();
 	void LoadMapFromFile(std::ifstream &f);
 };
 

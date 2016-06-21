@@ -28,7 +28,7 @@
 -Co ja tu mam robic?:11
 -Koniec:-1
 9.Nie mozesz zostac lucznikiem, bo programista jeszcze nie zaimplementowal.
--Powrot:-5
+-Powrot:5
 -Koniec:-1
 10.Swietnie! jakbys potrzebowal jakis magicznych nowinek to jestes tu zawsze mile widziany./setreturn 3
 -Co ja tu mam robic?:11

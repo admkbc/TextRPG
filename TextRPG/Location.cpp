@@ -28,7 +28,7 @@ Location::Location(string n, string locfile)
 	int pos;
 	while (std::getline(f, line))
 	{
-		if (line[0] == ':')
+		if (line[0] == ':') //new enemies group
 		{
 			line.erase(line.begin());
 			istringstream iss(line);
@@ -38,7 +38,7 @@ Location::Location(string n, string locfile)
 			en->probability = atoi(probability.c_str());
 			while (std::getline(f, line))
 			{
-				if (line[0] == '*')
+				if (line[0] == '*') //new enemy
 				{
 					string name, hp, attack, defend, quest;
 					int questInt;
@@ -53,8 +53,10 @@ Location::Location(string n, string locfile)
 					else
 						questInt = atoi(quest.c_str());
 					en->enemies.push_back(new Enemy(name, atoi(hp.c_str()), atoi(attack.c_str()), atoi(defend.c_str()), questInt));
+					//save pos
 					pos = f.tellg();
 				}
+				//if got line is not new enemy restore old pos
 				else
 				{
 					f.seekg(pos, ios_base::beg);
@@ -63,6 +65,7 @@ Location::Location(string n, string locfile)
 			}
 			enemies.push_back(en);
 		}
+		//Add new NPC to location
 		else if (line[0] == '+')
 		{
 			line.erase(line.begin());
@@ -76,6 +79,7 @@ Location::Location(string n, string locfile)
 			Npc *n = new Npc(name, atoi(hp.c_str()), atoi(attack.c_str()), atoi(defend.c_str()), filename);
 			npcs.push_back(n);
 		}
+		//Add road from this location to another one
 		else if (line[0] == '-')
 		{
 			line.erase(line.begin());
@@ -107,6 +111,7 @@ void Location::GoTo(Player* p)
 {
 	int random;
 	Battle *b;
+	//rand enemy
 	for (int i = 0; i < enemies.size(); ++i)
 	{
 		random = rand() % 100;
@@ -118,8 +123,10 @@ void Location::GoTo(Player* p)
 				b->AddToSecondTeam(enemies[i]->enemies[k], NULL);
 			}
 			b->Start();
+			delete b;
 		}
 	}
+
 }
 
 int Location::Menu(Player *p, Map *m)
@@ -127,8 +134,10 @@ int Location::Menu(Player *p, Map *m)
 	MainMenu *menu;
 	int pos = 0;
 	vector<string> options;
+	//Add all npcs to menu
 	for (int i = 0; i < npcs.size(); ++i)
 		options.push_back("Rozmawiaj z " + npcs[i]->GetName());
+	//Add all locations to menu
 	for (int i = 0; i < locations.size(); ++i)
 		options.push_back("Idz do " + m->GetNameOfLocation(locations[i]));
 	while (1)
@@ -195,12 +204,15 @@ int Location::Menu(Player *p, Map *m)
 			break;
 		case 27:
 			menu = new MainMenu("Paused", 10, 10);
-			if (menu->Show(true) == -1)
+			if(menu->Show(true) == -1)
 			{
 				delete menu;
 				return -1;
 			}
-			delete menu;
+			else
+			{
+				delete menu;
+			}
 			break;
 		}
 		if (ch == 13) //enter

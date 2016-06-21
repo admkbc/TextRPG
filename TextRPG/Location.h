@@ -17,7 +17,7 @@ struct EnemyProbability
 
 class Location
 {
-protected:
+private:
 	std::string name;
 	std::vector <EnemyProbability*> enemies;
 	std::vector <Npc*> npcs;

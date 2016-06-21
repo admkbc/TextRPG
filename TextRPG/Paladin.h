@@ -3,8 +3,8 @@
 #include "Warrior.h"
 
 class Paladin :
-	public virtual Mage,
-	public virtual Warrior
+	public Mage,
+	public Warrior
 {
 public:
 	Paladin(std::string name, int hp, int atack, int defense, int happiness, int exp, int money, int maxhp);

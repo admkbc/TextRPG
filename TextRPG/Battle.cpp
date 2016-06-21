@@ -26,6 +26,7 @@ inline int Battle::calcDamage(Character *attacker, Character *defender)
 {
 	Player *p;
 	int skill, armorBonus, weaponBonus, randomSkill;
+	//if attacker is player, calculate happiness and skill bonus
 	if (p = dynamic_cast<Player*>(attacker))
 	{
 		weaponBonus = p->GetAttackBonus();
@@ -50,7 +51,7 @@ inline int Battle::calcDamage(Character *attacker, Character *defender)
 		armorBonus = p->GetDefendBonus();
 	}
 	double random = (rand() % 7) + 7;
-	
+	//calc damage
 	double damage = static_cast<double>(max(attacker->Attack+weaponBonus+skill*randomSkill-defender->Defense-armorBonus,1)*random/10);
 	return damage;
 }
@@ -60,6 +61,7 @@ int Battle::calcItemBonus()
 	return 0;
 }
 
+//Show info about enemies
 void Battle::begin()
 {
 	system("cls");
@@ -86,10 +88,16 @@ void Battle::end(bool result)
 		cout << endl << "\tPorazka" << endl;
 		if (!P->items.empty()) 
 		{
+			//rand item id
 			int random = rand() % P->items.size();
 			cout << endl << "Przeciwnik zabral Ci " << P->items[random]->GetName();
+			//delete random item
 			P->items.erase(P->items.begin() + random);
+			//remove item from eq because deleted item may be used
+			P->RemoveFromEq(-1);
+			P->RemoveFromEq(-2);
 		}
+		//Set HP to 0
 		P->Hp = 0;
 	}
 	_getch();
@@ -103,10 +111,14 @@ bool Battle::checkDead()
 		int exp = (Enemies[enemyIndex]->Attack + Enemies[enemyIndex]->Defense) * 10;
 		P->AddExp(exp);
 		cout << "Otrzymales " << exp << " EXP." << endl;
+		//If enemies had quest
 		if (Enemies[enemyIndex]->questId >= 0)
 			P->quests[Enemies[enemyIndex]->questId]->Next();
+
 		Enemies.erase(Enemies.begin() + enemyIndex);
+		//Choose first enemy
 		enemyIndex = 0;
+		//If all enemies is dead
 		if (!Enemies.size())
 		{
 			end(true);
@@ -120,6 +132,7 @@ bool Battle::checkDead()
 	}
 }
 
+//Function show damage info
 void Battle::damage(Character *ch1, Character *ch2, bool tab)
 {
 	if (tab)
@@ -156,16 +169,19 @@ void Battle::Start()
 	{
 		while ((ch = _getch()) != ' ')
 		{
+			//Choose enemy
 			if ((static_cast<int>(ch) - 48) <= Enemies.size())
 			{
 				enemyIndex = static_cast<int>(ch) - 49;
 				cout << "Celujesz w " << Enemies[enemyIndex]->Name << endl;
 			}
 		}
+		//damage info
 		damage(P, Enemies[enemyIndex], false);
 		if (checkDead())
 			return;
 
+		//Somebody in my team alive
 		if (!MyTeam.empty())
 		{
 			for (int i = 0; i < MyTeam.size(); ++i)
@@ -180,6 +196,7 @@ void Battle::Start()
 	}
 }
 
+//Function add character to first team
 void Battle::AddToFirstTeam(Character *first,...)
 {
 		va_list arg;
@@ -191,6 +208,7 @@ void Battle::AddToFirstTeam(Character *first,...)
 		va_end(arg);
 }
 
+//Function add character to enemy team
 void Battle::AddToSecondTeam(Enemy *first,...)
 {
 	va_list arg;

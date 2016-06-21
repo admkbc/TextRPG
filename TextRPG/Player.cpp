@@ -82,6 +82,7 @@ int Player::printItems()
 
 void Player::LoadQuests()
 {
+	//Load quests
 	Quest *q = new Quest("killdragon");
 	quests.push_back(q);
 }
@@ -139,7 +140,9 @@ void Player::ShowInventory()
 		gotoxy(0, 3);
 		ShowEq();
 		gotoxy(0, 6);
+		//open menu
 		id = printItems();
+		//Use item
 		if (id >= 0)
 		{
 			if (items[id]->Use(this))
@@ -148,6 +151,7 @@ void Player::ShowInventory()
 				items.erase(items.begin() + id);
 			}
 		}
+		//Remove from eq
 		else if (id > -3)
 			this->RemoveFromEq(id);
 	}
@@ -232,7 +236,7 @@ void Player::LoadItemsAndQuests(std::ifstream& f)
 			while (iss >> tmp)
 				if (!isdigit(tmp[0]))
 					name = name + ' ' + tmp;
-
+			//item type is identyfied by integer
 			switch (itemType)
 			{
 			case 0:

@@ -47,7 +47,7 @@ int MainMenu::keyboard()
 		else if (ch == 27)
 		{
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
-			return -1;
+			return 3;
 		}
 	}
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
@@ -60,10 +60,15 @@ MainMenu::MainMenu(string title, int x, int y)
 	X(x),
 	Y(y)
 {
-
 	options.push_back("Nowa gra");
 	options.push_back("Wczytaj gre");
 	options.push_back("Wyjscie");
+	//Hide cursor
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO info;
+	info.dwSize = 100;
+	info.bVisible = FALSE;
+	SetConsoleCursorInfo(consoleHandle, &info);
 }
 
 

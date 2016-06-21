@@ -24,5 +24,6 @@ public:
 	~Npc();
 	int Talk(Player *p);
 	std::string GetName();
+
 };
 
